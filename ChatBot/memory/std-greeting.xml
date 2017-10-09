@@ -7,7 +7,7 @@
             <random>
                 <li>Hello there! What's your name? </li>
                 <li>Well...I usually say my name when meeting a stranger. What's yours?</li>
-                <li>Hi! A pleasure to meet you!<bot name="Gangplank"/></li>
+                <li>Hi! A pleasure to meet you!</li>
             </random>
         </template>
     </category>

@@ -5,7 +5,7 @@
 <pattern>LOAD AIML B</pattern>
 <template>
 <!-- Load standard AIML set -->
-<learn>memory/std-*.aiml</learn>
+<learn>memory/std-*.xml</learn>
 </template>
 </category>
     <category>
