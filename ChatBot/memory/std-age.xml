@@ -2,6 +2,21 @@
 
     <category>
         <pattern>
+            I AM * YEARS OLD
+        </pattern>
+        <template>
+            <star/>
+            <think>
+                <set name = "age">
+                        <star/>
+                </set>
+            </think>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>
             *
         </pattern>
         <template>

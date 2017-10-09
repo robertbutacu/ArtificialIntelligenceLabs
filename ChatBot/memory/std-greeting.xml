@@ -49,8 +49,8 @@
             WHAT IS MY NAME
         </pattern>
         <template>
-            <if name = "name" exists = "true">
-                Your name is <get name = "name"/>
+            <if name="name" exists="true">
+                Your name is <get_name/>.
             <else/>
                 What is your name?
             </if>
