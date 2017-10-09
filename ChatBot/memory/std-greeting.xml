@@ -11,4 +11,36 @@
             </random>
         </template>
     </category>
+
+    <category>
+        <pattern>
+            OH SORRY MY NAME IS *
+        </pattern>
+        <template>
+            Nice to meet you.
+        </template>
+    </category>
+
+    <category>
+        <pattern>
+            HI MY NAME IS *
+        </pattern>
+        <template>
+            Nice to meet you <star/>
+            <set_name><star/></set_name>
+        </template>
+    </category>
+
+    <category>
+        <pattern>
+            WHAT IS MY NAME
+        </pattern>
+        <template>
+            <if name="name" exists="true">
+                Your name is <get_name/>.
+            <else/>
+                What is your name?
+            </if>
+        </template>
+    </category>
 </aiml>
