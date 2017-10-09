@@ -27,7 +27,20 @@
         </pattern>
         <template>
             Nice to meet you <star/>
-            <set_name><star/></set_name>
+            <think>
+                <set name = "name">
+                    <star/>
+                </set>
+            </think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>
+            SAY MY NAME
+        </pattern>
+        <template>
+            <get name = "name"/>
         </template>
     </category>
 
@@ -36,8 +49,8 @@
             WHAT IS MY NAME
         </pattern>
         <template>
-            <if name="name" exists="true">
-                Your name is <get_name/>.
+            <if name = "name" exists = "true">
+                Your name is <get name = "name"/>
             <else/>
                 What is your name?
             </if>
