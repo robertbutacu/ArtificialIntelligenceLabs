@@ -41,10 +41,26 @@
             WHAT IS MY JOB
         </pattern>
         <template>
-            you work as a <get name = "job"/>
+            <condition name="job" value="programmer">
+              you work as a <get name = "job"/> WANNA HEAR A PROGRAMMERS JOKE
+            </condition>
+
+            <condition name="job" value="*">
+                random
+            </condition>
+
         </template>
     </category>
 
+    <category>
+        <pattern>
+            YES
+        </pattern>
+        <that>YOU WORK AS A PROGRAMMER WANNA HEAR A PROGRAMMERS JOKE</that>
+        <template>
+            there are 10 types of people: those who understand binary and those who don't.
+        </template>
+    </category>
 
     <category>
         <pattern>
