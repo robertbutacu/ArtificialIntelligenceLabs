@@ -1,4 +1,51 @@
 <aiml version="1.0">
+
+    <category>
+        <pattern>I AM WORKING AS A *</pattern>
+        <template>
+            Oh that is nice And what do you like about it
+            <think>
+                <set name = "job">
+                    <star/>
+                </set>
+            </think>
+        </template>
+    </category>
+
+
+
+    <category>
+        <pattern>I AM WORKING AS AN *</pattern>
+        <template>
+            Oh that is nice And what do you like about it
+            <think>
+                <set name = "job"><star/></set>
+            </think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>IT IS CREATIVE AND FUN BUT ALSO DEMANDING</pattern>
+        <that> OH THAT IS NICE AND WHAT DO YOU LIKE ABOUT IT</that>
+        <template>I believe those are the most important aspects of a job.</template>
+    </category>
+
+    <category>
+        <pattern>I REALLY DO NOT ENJOY IT MUCH</pattern>
+        <that> OH THAT IS NICE AND WHAT DO YOU LIKE ABOUT IT</that>
+        <template>Your job is a big part of your life, you should enjoy doing it.</template>
+    </category>
+
+    <category>
+        <pattern>
+            WHAT IS MY JOB
+        </pattern>
+        <template>
+            you work as a <get name = "job"/>
+        </template>
+    </category>
+
+
     <category>
         <pattern>
             *
