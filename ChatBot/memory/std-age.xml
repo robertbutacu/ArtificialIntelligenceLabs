@@ -5,12 +5,23 @@
             I AM * YEARS OLD
         </pattern>
         <template>
-            <star/>
+            Nobody asked, but okay. I hope i won't forget about that.
             <think>
-                <set name = "age">
-                        <star/>
-                </set>
+                <set name = "age"><star/></set>
             </think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>
+            DO YOU RECALL MY AGE
+        </pattern>
+        <template>
+            <condition name="age">
+                <li value="18">You are <get name="age"/>.Congrats! You can go to jail now.</li>
+                <li value="21">My creators are the same age, <get name="age"/>.</li>
+                <li value="70"><get name="age"/>, i remember. This must be scary for you huh? A computer talking to you.</li>
+            </condition>
         </template>
     </category>
 
