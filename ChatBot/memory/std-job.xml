@@ -37,21 +37,20 @@
     </category>
 
     <category>
-        <pattern>
-            WHAT IS MY JOB
-        </pattern>
-        <template>
-            <condition name="job" value="programmer">
-              you work as a <get name = "job"/> WANNA HEAR A PROGRAMMERS JOKE
-            </condition>
-
-            <condition name="job" value="*">
-                random
-            </condition>
-
-        </template>
+        <pattern>WHAT IS MY JOB</pattern>
+        <template>You are working as a <get name = "job"/></template>
     </category>
 
+    <category>
+        <pattern>CAN YOU TELL ME SOMETHING REGARDING MY JOB</pattern>
+        <template>
+            <condition name="job">
+                <li value="programmer">There are 10 types of people: those who understand binary and those who don't.</li>
+                <li value="teacher">I have an utmost respect for teachers.</li>
+                <li value="engineer">I recommend Big Bang Theory.</li>
+            </condition>
+        </template>
+    </category>
     <category>
         <pattern>
             YES
