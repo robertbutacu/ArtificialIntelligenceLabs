@@ -44,10 +44,16 @@
                 <li value="teacher">I have an utmost respect for <get name = "job"/>s</li>
                 <li value="engineer">Since you are an <get name = "job"/> I recommend Big Bang Theory</li>
                 <li value="programmer">There are 10 types of people those who understand binary and those who do not</li>
+                <li value="*">I do not hold information about that job.</li>
             </condition>
         </template>
     </category>
 
+    <category>
+        <pattern>THAT WAS FUNNY HAHA</pattern>
+        <that>THERE ARE 10 TYPES OF PEOPLE THOSE WHO UNDERSTAND BINARY AND THOSE WHO DO NOT</that>
+        <template>Haha, thank you! Most think it's not.</template>
+    </category>
 
     <category>
         <pattern>WHAT IS IT ABOUT</pattern>
