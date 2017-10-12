@@ -21,6 +21,7 @@
                 <li value="18">You are <get name="age"/>.Congrats! You can go to jail now.</li>
                 <li value="21">My creators are the same age, <get name="age"/>.</li>
                 <li value="70"><get name="age"/>, i remember. This must be scary for you huh? A computer talking to you.</li>
+                <li value="">I don't believe you told me anything about that.</li>
             </condition>
         </template>
     </category>

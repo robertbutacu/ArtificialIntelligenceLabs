@@ -1,20 +1,11 @@
 <aiml version="1.0">
 
-<!-- This category works with the Standard AIML Set -->
-<category>
-<pattern>LOAD AIML B</pattern>
-<template>
-<!-- Load standard AIML set -->
-<learn>memory/std-*.xml</learn>
-</template>
-</category>
+    <!-- This category works with the Standard AIML Set -->
     <category>
-        <pattern>
-            WHAT IS MY NAME *
-        </pattern>
+        <pattern>LOAD AIML B</pattern>
         <template>
-            I don't know what your name is.
+            <!-- Load standard AIML set -->
+            <learn>memory/std-*.xml</learn>
         </template>
     </category>
-
 </aiml>

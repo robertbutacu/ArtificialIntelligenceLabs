@@ -29,6 +29,8 @@
             Nice to meet you <star/>
             <think>
                 <set name = "name"><star/></set>
+                <set name="job">""</set>
+                <set name="age">""</set>
             </think>
         </template>
     </category>
