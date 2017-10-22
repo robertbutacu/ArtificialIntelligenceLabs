@@ -10,3 +10,15 @@ A game is represented as a list where :
 def is_final_state(state):
     return all(x == state[0] for x in state[1:])
 
+
+"""
+The game is initialized with a list where the first element represents the number of towers,
+and the rest of the list - the pieces that are by default positioned on the first peg.
+"""
+
+
+def initialize(number_of_towers, number_of_pieces):
+    return [number_of_towers] + list(map(lambda x: 1, range(number_of_pieces)))
+
+
+
