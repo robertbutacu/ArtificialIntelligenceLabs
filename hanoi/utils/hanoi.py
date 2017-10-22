@@ -21,4 +21,9 @@ def initialize(number_of_towers, number_of_pieces):
     return [number_of_towers] + list(map(lambda x: 1, range(number_of_pieces)))
 
 
+def transition(state, piece, peg):
+    state[piece] = peg
+    return state
+
+
 
