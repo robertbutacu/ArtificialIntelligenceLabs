@@ -27,12 +27,16 @@ def transition(state, piece, peg):
 
 
 def is_valid(state, piece_index, new_peg):
+    only_pieces = state[1:]
+
     # don't sit on itself, it's already there
-    if state[piece_index] == new_peg:
+    if only_pieces[piece_index] == new_peg:
+        print("Already there")
         return False
 
     # no piece should be on top of the piece wanted to be moved
-    if not all(state[piece_index] == x for x in range(0, piece_index)):
+    # aka all pieces should be on a different peg up to the current piece
+    if not all(only_pieces[piece_index] != x for x in range(0, piece_index)):
         return False
 
     # there isn't another piece of lower weight already on the new peg
@@ -41,4 +45,3 @@ def is_valid(state, piece_index, new_peg):
 
     # all goochy
     return True
-
