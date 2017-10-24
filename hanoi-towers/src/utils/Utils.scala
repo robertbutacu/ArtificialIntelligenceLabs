@@ -16,18 +16,11 @@ The game is initialized with a list where the first element represents the numbe
 and the rest of the list - the pieces that are by default positioned on the first peg.
 """
 
-/*
-  def initialize(number_of_pegs, number_of_pieces):
-  return [number_of_pegs] + list(map(lambda x: 1, range(number_of_pieces)))
-*/
   def initialize(numberOfPegs: Int, numberOfPieces: Int): List[Int] =
     List(numberOfPegs) ::: List.fill(numberOfPieces)(1)
 
-  /*
-  def transition(state, piece, peg):
-  state[piece] = peg
-  return state
-  */
+  def transition(state: List[Int], piece: Int, peg: Int): List[Int] =
+    state.updated(piece, peg)
 
   /*
   def is_valid(state, piece_index, new_peg):
