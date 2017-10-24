@@ -40,4 +40,12 @@ and the rest of the list - the pieces that are by default positioned on the firs
   # all goochy
   return True
   */
+  def isValid(state: List[Int], pieceIndex: Int, newPeg: Int): Boolean =
+    // don't sit on itself, it's already there
+    state(pieceIndex) != newPeg &&
+    // no piece should be on top of the piece wanted to be moved
+    // aka all pieces should be on a different peg up to the current piece
+    !state.slice(1, pieceIndex).contains(state(pieceIndex)) &&
+    //there isn't another piece of lower weight already on the new peg
+    !state.slice(1, pieceIndex).exists(p => state(p) == newPeg)
 }
