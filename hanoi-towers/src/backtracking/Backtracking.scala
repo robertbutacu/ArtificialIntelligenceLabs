@@ -41,10 +41,9 @@ object Backtracking {
         val currentState = states.head
 
         //for current state, compute each possible reachable state from current position
-        var newStates: List[List[Int]] = List(List.empty)
-        for (pieceIndex <- 1 to pieces) {
+        val newStates = (1 to pieces).toList.flatMap{ pieceIndex =>
           //for each element, try to create a new state on a different peg
-          newStates = newStates ::: (1 to currentState.head)
+          (1 to currentState.head)
             .toList
             //filtering to map only to valid transitions
             .filter(peg => isValid(currentState, pieceIndex, peg))
