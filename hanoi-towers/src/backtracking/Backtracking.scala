@@ -34,7 +34,7 @@ object Backtracking {
 
     @tailrec
     def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): Int = {
-      if (isFinalState(states.head)){
+      if (isFinalState(states.head)) {
         (road :+ states.head).filterNot(_.isEmpty).length
       }
       else {
@@ -42,7 +42,7 @@ object Backtracking {
 
         //for current state, compute each possible reachable state from current position
         var newStates: List[List[Int]] = List(List.empty)
-        for( pieceIndex <- 1 to pieces) {
+        for (pieceIndex <- 1 to pieces) {
           //for each element, try to create a new state on a different peg
           newStates = newStates ::: (1 to currentState.head)
             .toList
@@ -58,8 +58,8 @@ object Backtracking {
     }
 
     method match {
-      case First   => Left(go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty)))
-      case All     => Right(go(initialize(pegs, pieces), 1, List(List.empty), List()))
+      case First => Left(go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty)))
+      case All   => Right(go(initialize(pegs, pieces), 1, List(List.empty), List()))
 
     }
   }
