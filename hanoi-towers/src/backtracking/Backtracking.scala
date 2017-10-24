@@ -2,6 +2,8 @@ package backtracking
 
 import utils.Utils._
 
+import scala.annotation.tailrec
+
 object Backtracking {
   type States = List[List[Int]]
 
@@ -29,6 +31,30 @@ object Backtracking {
       }
     }
 
-    go(initialize(pegs, pieces), 1, List(List.empty), List())
+    @tailrec
+    def go2(states: States, road: States): States = {
+      if(isFinalState(states.head))
+        road :+ states.head
+      else{
+        //for current state, compute each possible reachable state from current position
+        val newStates = states.head.drop(1).flatMap{e =>
+          //for each element, try to create a new state on a different peg
+          (1 to states.head.head)
+            .toList
+            //filtering to map only to valid transitions
+            .filter(peg => isValid(states.head, e, peg))
+            //transitioning to a new state
+            .map( peg => transition(states.head, e, peg))
+            //filtering for repetitive states
+            .filterNot(states.contains)
+        }
+        println(newStates)
+        go2(states.drop(1) ::: newStates, road :+ states.head)
+      }
+    }
+
+
+    go2(List(initialize(pegs, pieces)), List(List.empty))
+    //go(initialize(pegs, pieces), 1, List(List.empty), List())
   }
 }

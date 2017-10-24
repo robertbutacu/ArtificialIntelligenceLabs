@@ -2,5 +2,5 @@ import backtracking.Backtracking._
 import utils.Utils.isValid
 
 object Main extends App{
-  solveHanoi(5, 3)
+  println(solveHanoi(3, 3))
 }
