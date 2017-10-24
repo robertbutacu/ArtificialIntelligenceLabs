@@ -17,7 +17,8 @@ object Backtracking {
       }
       else {
         //all possible routes that could be taken from the current piece index in current state
-        val validStates = (1 to currentState.head).toList.filter(e => isValid(currentState, currentPieceIndex, e))
+        val validStates = (1 to currentState.head).toList
+          .filter(e => isValid(currentState, currentPieceIndex, e))
 
         //a list of all possible states, not including previous states
         val possibleStates = validStates
@@ -25,10 +26,10 @@ object Backtracking {
           .filterNot(previousStates.contains(_))
 
         //for each possible state, recursively call the function for each piece apart from the current one
-        possibleStates.foreach(s => (1 to pieces)
-          .toList
-          .filterNot(_ == currentPieceIndex)
-          .foreach(piece => go(s, piece, previousStates :+ s, road :+ s)))
+        possibleStates.foreach(s =>
+          (1 to pieces).toList
+            .filterNot(_ == currentPieceIndex)
+            .foreach(piece => go(s, piece, previousStates :+ s, road :+ s)))
       }
     }
 
@@ -39,18 +40,17 @@ object Backtracking {
       else {
         val currentState = states.head
         //for current state, compute each possible reachable state from the current one
-        val newStates = (1 to pieces).toList.flatMap{ pieceIndex =>
-          //for each element, try to create a new state with pieceIndex on a different peg
-          (1 to currentState.head)
-            .toList
-            //filtering only valid transitions
-            .filter(peg => isValid(currentState, pieceIndex, peg))
-            //transitioning to a new state all valid transitions
-            .map(peg => transition(currentState, pieceIndex, peg))
-            //filtering for repetitive states which will lead to cycles
-            .filterNot(states.contains)
-            .filterNot(visited.contains)
-        }
+        val newStates = (1 to pieces).toList
+          .flatMap { pieceIndex =>
+            //for each element, try to create a new state with pieceIndex on a different peg
+            (1 to currentState.head).toList
+              //filtering only valid transitions
+              .filter(peg => isValid(currentState, pieceIndex, peg))
+              //transitioning to a new state all valid transitions
+              .map(peg => transition(currentState, pieceIndex, peg))
+              //filtering for repetitive states which will lead to cycles
+              .filterNot(s => states.contains(s) || visited.contains(s))
+          }
         go2(states.drop(1) ++ newStates.drop(1), visited + states.head, road :+ states.head)
       }
     }
@@ -58,7 +58,6 @@ object Backtracking {
     method match {
       case First => Left(go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty)))
       case All   => Right(go(initialize(pegs, pieces), 1, List(List.empty), List()))
-
     }
   }
 }
