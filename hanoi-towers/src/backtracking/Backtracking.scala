@@ -21,6 +21,7 @@ object Backtracking {
           .map(p => transition(currentState, currentPieceIndex, p))
           .filterNot(previousStates.contains(_))
 
+        //for each possible state, recursively call the function for each piece apart from the current one
         possibleStates.foreach(s => (1 to currentState.head)
           .toList
           .filterNot(_ == currentPieceIndex)
