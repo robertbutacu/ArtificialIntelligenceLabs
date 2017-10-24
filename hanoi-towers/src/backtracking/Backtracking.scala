@@ -7,7 +7,7 @@ import scala.annotation.tailrec
 object Backtracking {
   type States = List[List[Int]]
 
-  def solveHanoi(pegs: Int, pieces: Int): Unit = {
+  def solveHanoi(pegs: Int, pieces: Int): States = {
     def go(currentState: List[Int], currentPieceIndex: Int,
            previousStates: States,
            road: States): Unit = {
@@ -34,7 +34,6 @@ object Backtracking {
     @tailrec
     def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): States = {
       if (isFinalState(states.head)){
-        println("found")
         road :+ states.head
       }
       else {
@@ -53,7 +52,6 @@ object Backtracking {
             //filtering for repetitive states
             .filterNot(states.contains)
         }
-        println(road)
         go2(states.drop(1) ++ newStates.drop(1), visited + states.head, road :+ states.head)
       }
     }
