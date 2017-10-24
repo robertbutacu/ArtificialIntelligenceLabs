@@ -11,7 +11,7 @@ object Backtracking {
     def go(currentState: List[Int], currentPieceIndex: Int,
            previousStates: States,
            road: States): Unit = {
-      if (isFinalState(currentState)){
+      if (isFinalState(currentState)) {
         println("Road: " + road)
       }
       else {
@@ -32,29 +32,34 @@ object Backtracking {
     }
 
     @tailrec
-    def go2(states: States, road: States): States = {
-      if(isFinalState(states.head))
+    def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): States = {
+      if (isFinalState(states.head)){
+        println("found")
         road :+ states.head
-      else{
+      }
+      else {
+        val currentState = states.head
+
         //for current state, compute each possible reachable state from current position
-        val newStates = states.head.drop(1).flatMap{e =>
+        var newStates: List[List[Int]] = List(List.empty)
+        for( pieceIndex <- 1 to pieces) {
           //for each element, try to create a new state on a different peg
-          (1 to states.head.head)
+          newStates = newStates ::: (1 to currentState.head)
             .toList
             //filtering to map only to valid transitions
-            .filter(peg => isValid(states.head, e, peg))
-            //transitioning to a new state
-            .map( peg => transition(states.head, e, peg))
+            .filter(peg => isValid(currentState, pieceIndex, peg))
+            //transitioning to a new state PIECE INDEX
+            .map(peg => transition(currentState, pieceIndex, peg))
             //filtering for repetitive states
             .filterNot(states.contains)
         }
-        println(newStates)
-        go2(states.drop(1) ::: newStates, road :+ states.head)
+        println(road)
+        go2(states.drop(1) ++ newStates.drop(1), visited + states.head, road :+ states.head)
       }
     }
 
 
-    go2(List(initialize(pegs, pieces)), List(List.empty))
+    go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty))
     //go(initialize(pegs, pieces), 1, List(List.empty), List())
   }
 }
