@@ -1,5 +1,6 @@
 package backtracking
 
+import utils.{All, BacktrackingMethod, First}
 import utils.Utils._
 
 import scala.annotation.tailrec
@@ -7,7 +8,7 @@ import scala.annotation.tailrec
 object Backtracking {
   type States = List[List[Int]]
 
-  def solveHanoi(pegs: Int, pieces: Int): States = {
+  def solveHanoi(pegs: Int, pieces: Int, method: BacktrackingMethod): Either[States, Unit] = {
     def go(currentState: List[Int], currentPieceIndex: Int,
            previousStates: States,
            road: States): Unit = {
@@ -49,15 +50,17 @@ object Backtracking {
             .filter(peg => isValid(currentState, pieceIndex, peg))
             //transitioning to a new state PIECE INDEX
             .map(peg => transition(currentState, pieceIndex, peg))
-            //filtering for repetitive states
+            //filtering for repetitive states which will lead to cycles
             .filterNot(states.contains)
         }
         go2(states.drop(1) ++ newStates.drop(1), visited + states.head, road :+ states.head)
       }
     }
 
+    method match {
+      case First   => Left(go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty)))
+      case All     => Right(go(initialize(pegs, pieces), 1, List(List.empty), List()))
 
-    go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty))
-    //go(initialize(pegs, pieces), 1, List(List.empty), List())
+    }
   }
 }
