@@ -22,7 +22,7 @@ object Backtracking {
           .filterNot(previousStates.contains(_))
 
         //for each possible state, recursively call the function for each piece apart from the current one
-        possibleStates.foreach(s => (1 to currentState.head)
+        possibleStates.foreach(s => (1 to pieces)
           .toList
           .filterNot(_ == currentPieceIndex)
           .foreach(piece => go(s, piece, previousStates :+ s, road :+ s)))
