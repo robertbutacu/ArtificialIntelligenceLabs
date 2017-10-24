@@ -13,7 +13,7 @@ object Backtracking {
            previousStates: States,
            road: States): Unit = {
       if (isFinalState(currentState)) {
-        println("Road: " + road)
+        println("Road: " + road.length)
       }
       else {
         //all possible routes that could be taken from the current piece index in current state
@@ -34,12 +34,10 @@ object Backtracking {
 
     @tailrec
     def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): Int = {
-      if (isFinalState(states.head)) {
+      if (isFinalState(states.head))
         (road :+ states.head).filterNot(_.isEmpty).length
-      }
       else {
         val currentState = states.head
-
         //for current state, compute each possible reachable state from current position
         val newStates = (1 to pieces).toList.flatMap{ pieceIndex =>
           //for each element, try to create a new state on a different peg
@@ -51,6 +49,7 @@ object Backtracking {
             .map(peg => transition(currentState, pieceIndex, peg))
             //filtering for repetitive states which will lead to cycles
             .filterNot(states.contains)
+            .filterNot(visited.contains)
         }
         go2(states.drop(1) ++ newStates.drop(1), visited + states.head, road :+ states.head)
       }
