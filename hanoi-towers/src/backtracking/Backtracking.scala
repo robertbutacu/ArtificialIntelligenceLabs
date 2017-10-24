@@ -10,7 +10,7 @@ object Backtracking {
            previousStates: States,
            road: States): Unit = {
       if (isFinalState(currentState)){
-        println(road)
+        println("Road: " + road)
       }
       else {
         //all possible routes that could be taken from the current piece index in current state
