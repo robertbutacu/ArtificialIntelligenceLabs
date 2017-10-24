@@ -38,14 +38,14 @@ object Backtracking {
         (road :+ states.head).filterNot(_.isEmpty).length
       else {
         val currentState = states.head
-        //for current state, compute each possible reachable state from current position
+        //for current state, compute each possible reachable state from the current one
         val newStates = (1 to pieces).toList.flatMap{ pieceIndex =>
-          //for each element, try to create a new state on a different peg
+          //for each element, try to create a new state with pieceIndex on a different peg
           (1 to currentState.head)
             .toList
-            //filtering to map only to valid transitions
+            //filtering only valid transitions
             .filter(peg => isValid(currentState, pieceIndex, peg))
-            //transitioning to a new state PIECE INDEX
+            //transitioning to a new state all valid transitions
             .map(peg => transition(currentState, pieceIndex, peg))
             //filtering for repetitive states which will lead to cycles
             .filterNot(states.contains)
