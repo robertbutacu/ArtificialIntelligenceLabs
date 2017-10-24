@@ -8,7 +8,7 @@ import scala.annotation.tailrec
 object Backtracking {
   type States = List[List[Int]]
 
-  def solveHanoi(pegs: Int, pieces: Int, method: BacktrackingMethod): Either[States, Unit] = {
+  def solveHanoi(pegs: Int, pieces: Int, method: BacktrackingMethod): Either[Int, Unit] = {
     def go(currentState: List[Int], currentPieceIndex: Int,
            previousStates: States,
            road: States): Unit = {
@@ -33,9 +33,9 @@ object Backtracking {
     }
 
     @tailrec
-    def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): States = {
+    def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): Int = {
       if (isFinalState(states.head)){
-        road :+ states.head
+        (road :+ states.head).filterNot(_.isEmpty).length
       }
       else {
         val currentState = states.head

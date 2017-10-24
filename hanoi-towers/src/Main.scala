@@ -3,5 +3,5 @@ import utils.{All, First}
 import utils.Utils.isValid
 
 object Main extends App{
-  println(solveHanoi(3, 3, First))
+  println(solveHanoi(5, 5, First))
 }
