@@ -13,6 +13,7 @@ object Backtracking {
             previousStates: States,
             road: States): Unit = {
       if (isFinalState(currentState)) {
+        println("Road: " + road)
         println("Road: " + road.length)
       }
       else {
