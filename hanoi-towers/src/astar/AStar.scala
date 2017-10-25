@@ -9,7 +9,7 @@ object AStar {
   def getGraph(initialState: List[Int], pieces: Int, pegs: Int): List[Node] = {
     @tailrec
     def go(currentNode: Node, queue: List[Node], allNodes: List[Node]): List[Node] = {
-      if (queue.isEmpty || isFinalState(currentNode.state))
+      if (queue.isEmpty)
         allNodes :+ currentNode
       else {
         //generate all possible transitions from current state
