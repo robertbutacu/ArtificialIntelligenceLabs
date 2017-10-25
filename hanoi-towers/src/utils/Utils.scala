@@ -11,6 +11,8 @@ object Utils {
 
   def isFinalState(state: List[Int]): Boolean = state.forall(_ == state.head)
 
+  def isInitialState(state: List[Int]): Boolean = state.slice(1, state.length).forall(_ == 1)
+
   /**
     * The game is initialized with a list where the first element represents the number of pegs,
     * and the rest of the list - the pieces that are by default positioned on the first peg.
