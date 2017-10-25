@@ -9,7 +9,7 @@ object Backtracking {
   type States = List[List[Int]]
 
   def solveHanoi(pegs: Int, pieces: Int, method: BacktrackingMethod): Either[Int, Unit] = {
-    def go(currentState: List[Int], currentPieceIndex: Int,
+    def all(currentState: List[Int], currentPieceIndex: Int,
            previousStates: States,
            road: States): Unit = {
       if (isFinalState(currentState)) {
@@ -29,34 +29,34 @@ object Backtracking {
         possibleStates.foreach(s =>
           (1 to pieces).toList
             .filterNot(_ == currentPieceIndex)
-            .foreach(piece => go(s, piece, previousStates :+ s, road :+ s)))
+            .foreach(piece => all(s, piece, previousStates :+ s, road :+ s)))
       }
     }
 
     @tailrec
-    def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): Int = {
-      if (isFinalState(states.head)){
-        println(states.head)
+    def first(states: List[List[Int]], visited: Set[List[Int]], road: States): Int = {
+      if (isFinalState(states.head))
         (road :+ states.head).filterNot(_.isEmpty).length
-      }
       else {
         val currentState = states.head
 
+        //generate all possible transitions from current state
         var newStates = for{
           allPieces <- (1 to pieces).toStream
           allPegs <- (1 to pegs).toStream
           if isValid(currentState, allPieces, allPegs)
         } yield transition(currentState, allPieces, allPegs)
 
+        //filtering so cycles are not met
         newStates = newStates filterNot (s => states.contains(s) || visited.contains(s)) filterNot (_.isEmpty)
 
-        go2(states.drop(1) ++ newStates, visited + states.head, road :+ states.head)
+        first(states.drop(1) ++ newStates, visited + states.head, road :+ states.head)
       }
     }
 
     method match {
-      case First => Left(go2(List(initialize(pegs, pieces)), Set.empty, List(List.empty)))
-      case All   => Right(go(initialize(pegs, pieces), 1, List(List.empty), List()))
+      case First => Left(first(List(initialize(pegs, pieces)), Set.empty, List(List.empty)))
+      case All   => Right(all(initialize(pegs, pieces), 1, List(List.empty), List()))
     }
   }
 }
