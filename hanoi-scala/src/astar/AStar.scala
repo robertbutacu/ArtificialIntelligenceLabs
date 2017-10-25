@@ -20,11 +20,13 @@ object AStar {
         } yield transition(currentNode.state, allPieces, allPegs)
 
 
+        //creating new neighbours to the current node
         val newNodes = newStates.toList
           .map(e => new Node(e, Some(currentNode)))
 
         currentNode.neighbors = currentNode.neighbors ::: newNodes
 
+        //filtering out already nodes that were created to not go through cycles
         val reachableNodes = newNodes.filterNot(n => allNodes.exists(an => an.state == n.state ||
           an.previousState.map(e => e.state) == n.previousState.map(e => e.state)))
 
@@ -45,10 +47,12 @@ object AStar {
         node.previousState match {
           case None =>
           case Some(n) =>
+            // either the distance to final node is updated for the current node
             if (n.distanceToFinal > distanceToFinal + 1) {
               n.distanceToFinal = distanceToFinal + 1
               go(n, distanceToFinal + 1)
             }
+              // or the distance to final node of the current node is smaller, which replaces current dist
             else
               go(n, n.distanceToFinal)
         }
@@ -66,6 +70,7 @@ object AStar {
       if (isFinalState(node.state))
         (path.length, path)
       else {
+        // sorting to get neighbor with smallest distance to final node
         node.neighbors = node.neighbors.sortWith((n1, n2) => n1.distanceToFinal <= n2.distanceToFinal)
         go(node.neighbors.head, path :+ node.neighbors.head)
       }
