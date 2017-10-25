@@ -60,10 +60,11 @@ object AStar {
     input filter (n => isFinalState(n.state)) foreach (go(_, 0))
   }
 
-  def getShortestDistance(input: List[Node]): List[Node] = {
-    def go(node: Node, path: List[Node]): List[Node] = {
+  def getShortestDistance(input: List[Node]): (Int, List[Node]) = {
+    @tailrec
+    def go(node: Node, path: List[Node]): (Int, List[Node]) = {
       if (isFinalState(node.state))
-        path :+ node
+        (path.length, path)
       else {
         node.neighbors = node.neighbors.sortWith((n1, n2) => n1.distanceToFinal <= n2.distanceToFinal)
         go(node.neighbors.head, path :+ node.neighbors.head)
