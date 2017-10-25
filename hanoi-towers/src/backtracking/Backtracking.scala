@@ -10,8 +10,8 @@ object Backtracking {
 
   def solveHanoi(pegs: Int, pieces: Int, method: BacktrackingMethod): Either[Int, Unit] = {
     def all(currentState: List[Int], currentPieceIndex: Int,
-           previousStates: States,
-           road: States): Unit = {
+            previousStates: States,
+            road: States): Unit = {
       if (isFinalState(currentState)) {
         println("Road: " + road.length)
       }
@@ -41,7 +41,7 @@ object Backtracking {
         val currentState = states.head
 
         //generate all possible transitions from current state
-        var newStates = for{
+        var newStates = for {
           allPieces <- (1 to pieces).toStream
           allPegs <- (1 to pegs).toStream
           if isValid(currentState, allPieces, allPegs)
