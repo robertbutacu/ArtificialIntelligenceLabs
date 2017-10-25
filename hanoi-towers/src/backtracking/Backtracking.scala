@@ -35,23 +35,22 @@ object Backtracking {
 
     @tailrec
     def go2(states: List[List[Int]], visited: Set[List[Int]], road: States): Int = {
-      if (isFinalState(states.head))
+      if (isFinalState(states.head)){
+        println(states.head)
         (road :+ states.head).filterNot(_.isEmpty).length
+      }
       else {
         val currentState = states.head
-        //for current state, compute each possible reachable state from the current one
-        val newStates = (1 to pieces).toList
-          .flatMap { pieceIndex =>
-            //for each element, try to create a new state with pieceIndex on a different peg
-            (1 to currentState.head).toList
-              //filtering only valid transitions
-              .filter(peg => isValid(currentState, pieceIndex, peg))
-              //transitioning to a new state all valid transitions
-              .map(peg => transition(currentState, pieceIndex, peg))
-              //filtering for repetitive states which will lead to cycles
-              .filterNot(s => states.contains(s) || visited.contains(s))
-          }
-        go2(states.drop(1) ++ newStates.drop(1), visited + states.head, road :+ states.head)
+
+        var newStates = for{
+          allPieces <- (1 to pieces).toStream
+          allPegs <- (1 to pegs).toStream
+          if isValid(currentState, allPieces, allPegs)
+        } yield transition(currentState, allPieces, allPegs)
+
+        newStates = newStates filterNot (s => states.contains(s) || visited.contains(s)) filterNot (_.isEmpty)
+
+        go2(states.drop(1) ++ newStates, visited + states.head, road :+ states.head)
       }
     }
 
