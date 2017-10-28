@@ -12,9 +12,26 @@ public class Board {
 
     public void move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to){
         if(isValidPlayerTurn(player) && isPlayerPiece(player, from)){
-            board[from.getKey()][from.getValue()] = 0;
-            board[to.getKey()][to.getValue()] = player;
+            movePiece(player, from , to);
         }
+    }
+
+    private void movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to){
+
+
+        board[from.getKey()][from.getValue()] = 0;
+        board[to.getKey()][to.getValue()] = player;
+    }
+
+    /**
+     There are  possible moves:
+
+     1. moves for the first time a piece => means to._1 - from._1 <= 2
+     2. piece already has been moved: to._1 - from._1 <= 1
+     3. there is a piece of the opponent in either to._2 + 1 or to._2 - 1
+     */
+    private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to){
+        return true;
     }
 
     private Boolean isValidPlayerTurn(int player){
