@@ -5,9 +5,23 @@ import javafx.util.Pair;
 public class Board {
     private int [][] board;
 
+    //TODO maybe have a separate class BoardManager who will perform all kindzz of actions on a Board.
+
+
     public Board() {
         board = new int[8][8];
         initiateBoard();
+    }
+
+    /**
+     *  Conditions to be met to win/draw a game:
+     *      1. reached the end of the board
+     *      2. no pieces left of the enemy
+     *      3. all pawns are facing each other, with no other possible move
+     * @return 0 => game still going, 1 => player, 2 => bot, or the other way around, 4 => draw
+     */
+    public int hasWon(){
+        return 0;
     }
 
     public void move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to){
@@ -17,8 +31,6 @@ public class Board {
     }
 
     private void movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to){
-
-
         board[from.getKey()][from.getValue()] = 0;
         board[to.getKey()][to.getValue()] = player;
     }
