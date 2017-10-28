@@ -1,8 +1,5 @@
 package com.chess.game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Board {
     private int [][] board;
 
