@@ -29,7 +29,16 @@ public class Board {
     public String toString() {
         StringBuilder boardView = new StringBuilder();
 
+        boardView.append(" \t");
+
         for (int i = 0; i < 8; i++) {
+            boardView.append(i).append(" ");
+        }
+
+        boardView.append("\n\n");
+
+        for (int i = 0; i < 8; i++) {
+            boardView.append(i).append("\t");
             for (int j = 0; j < 8; j++) {
                 boardView.append(board[i][j]);
                 boardView.append(" ");
