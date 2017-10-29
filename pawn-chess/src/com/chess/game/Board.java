@@ -3,7 +3,6 @@ package com.chess.game;
 import javafx.util.Pair;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 import static java.lang.Integer.max;
 
@@ -52,16 +51,16 @@ public class Board {
         for (int i = 1; i < board.length - 1; i++)
             for (int j = 1; j < board.length - 1; j++)
                 if (board[i][j] == 1)
-                    if (!columnBlockedByOponentPiece(i, j) || canEatOponentPiece(i, j))
+                    if (!columnBlockedByOpponentPiece(i, j) || canEatOpponentPiece(i, j))
                         return 0;
         return 4;
     }
 
-    private boolean columnBlockedByOponentPiece(int row, int column) {
+    private boolean columnBlockedByOpponentPiece(int row, int column) {
         return board[row + 1][column] != 0;
     }
 
-    private boolean canEatOponentPiece(int row, int column) {
+    private boolean canEatOpponentPiece(int row, int column) {
         return (board[row + 1][column - 1] != 0) || (board[row + 1][column + 1] != 0);
     }
 
