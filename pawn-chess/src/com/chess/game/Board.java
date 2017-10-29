@@ -18,6 +18,7 @@ public class Board {
         initiateBoard();
     }
 
+
     /**
      * Conditions to be met to win/draw a game:
      * 1. reached the end of the board
@@ -26,12 +27,8 @@ public class Board {
      *
      * @return 0 => game still going, 1 => player, 2 => bot, or the other way around, 4 => draw
      */
-
-    private int noEnemyPiecesLeft(int enemy) {
-        for (int i = 1; i < board.length - 1; i++)
-            if (Arrays.stream(board[i]).anyMatch(piece -> piece == enemy))
-                return 0;
-        return enemy == 1 ? 2 : 1;
+    public int gameStatus() {
+        return max(max(playerWins(), botWins()), isDraw());
     }
 
     private int playerWins() {
@@ -42,13 +39,14 @@ public class Board {
         return max((Arrays.stream(board[7]).sum() > 0 ? 2 : 0), noEnemyPiecesLeft(1));
     }
 
-    private boolean columnBlockedByOponentPiece(int row, int column) {
-        return board[row + 1][column] != 0;
+
+    private int noEnemyPiecesLeft(int enemy) {
+        for (int i = 1; i < board.length - 1; i++)
+            if (Arrays.stream(board[i]).anyMatch(piece -> piece == enemy))
+                return 0;
+        return enemy == 1 ? 2 : 1;
     }
 
-    private boolean canEatOponentPiece(int row, int column) {
-        return (board[row + 1][column - 1] != 0) || (board[row + 1][column + 1] != 0);
-    }
 
     private int isDraw() {
         for (int i = 1; i < board.length - 1; i++)
@@ -59,8 +57,12 @@ public class Board {
         return 4;
     }
 
-    public int gameStatus() {
-        return max(max(playerWins(), botWins()), isDraw());
+    private boolean columnBlockedByOponentPiece(int row, int column) {
+        return board[row + 1][column] != 0;
+    }
+
+    private boolean canEatOponentPiece(int row, int column) {
+        return (board[row + 1][column - 1] != 0) || (board[row + 1][column + 1] != 0);
     }
 
     public void move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
