@@ -9,14 +9,10 @@ import static java.lang.Integer.max;
 public class Board {
     private int[][] board;
 
-    //TODO maybe have a separate class BoardManager who will perform all kindzz of actions on a Board.
-
-
     public Board() {
         board = new int[8][8];
         initiateBoard();
     }
-
 
     /**
      * Conditions to be met to win/draw a game:
@@ -38,14 +34,12 @@ public class Board {
         return max((Arrays.stream(board[7]).sum() > 0 ? 2 : 0), noEnemyPiecesLeft(1));
     }
 
-
     private int noEnemyPiecesLeft(int enemy) {
         for (int i = 1; i < board.length - 1; i++)
             if (Arrays.stream(board[i]).anyMatch(piece -> piece == enemy))
                 return 0;
         return enemy == 1 ? 2 : 1;
     }
-
 
     private int isDraw() {
         for (int i = 1; i < board.length - 1; i++)
@@ -82,6 +76,7 @@ public class Board {
      * 2. piece already has been moved: to._1 - from._1 <= 1
      * 3. there is a piece of the opponent in either to._2 + 1 or to._2 - 1
      */
+
     private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         return true;
     }

@@ -48,13 +48,14 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chess/game/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="95" column="5" lean-forward="true" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+            <state relative-caret-position="1122">
+              <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
               <folding>
-                <element signature="e#827#828#0" expanded="true" />
-                <element signature="e#920#921#0" expanded="true" />
-                <element signature="e#2683#2684#0" expanded="true" />
-                <element signature="e#2763#2764#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#689#690#0" expanded="true" />
+                <element signature="e#782#783#0" expanded="true" />
+                <element signature="e#2552#2553#0" expanded="true" />
+                <element signature="e#2632#2633#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -302,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509307146250</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="small typo on opponent">
+      <created>1509307672405</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1509307672405</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -350,7 +358,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="indentation" />
     <MESSAGE value="rearranged methods so its slightly more fluid" />
-    <option name="LAST_COMMIT_MESSAGE" value="rearranged methods so its slightly more fluid" />
+    <MESSAGE value="small typo on opponent" />
+    <option name="LAST_COMMIT_MESSAGE" value="small typo on opponent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -386,10 +395,11 @@
         <state relative-caret-position="1210">
           <caret line="61" column="31" lean-forward="true" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
           <folding>
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#2683#2684#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#689#690#0" expanded="true" />
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#2552#2553#0" expanded="true" />
+            <element signature="e#2632#2633#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -420,13 +430,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chess/game/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="95" column="5" lean-forward="true" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+        <state relative-caret-position="1122">
+          <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
           <folding>
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#2683#2684#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#689#690#0" expanded="true" />
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#2552#2553#0" expanded="true" />
+            <element signature="e#2632#2633#0" expanded="true" />
           </folding>
         </state>
       </provider>
