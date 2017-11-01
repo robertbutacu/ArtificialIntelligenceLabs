@@ -48,12 +48,12 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chess/game/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="282">
+              <caret line="112" column="49" lean-forward="true" selection-start-line="112" selection-start-column="49" selection-end-line="112" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4698#4699#0" expanded="true" />
-                <element signature="e#4725#4726#0" expanded="true" />
+                <element signature="e#4728#4729#0" expanded="true" />
+                <element signature="e#4755#4756#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -325,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509525964138</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="firstTimePlayer1()">
+      <created>1509526494858</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1509526494858</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -376,7 +383,8 @@
     <MESSAGE value="small typo on opponent" />
     <MESSAGE value="indentation&#10;removed todo" />
     <MESSAGE value="progress on move()" />
-    <option name="LAST_COMMIT_MESSAGE" value="progress on move()" />
+    <MESSAGE value="firstTimePlayer1()" />
+    <option name="LAST_COMMIT_MESSAGE" value="firstTimePlayer1()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -413,8 +421,8 @@
           <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4698#4699#0" expanded="true" />
-            <element signature="e#4725#4726#0" expanded="true" />
+            <element signature="e#4728#4729#0" expanded="true" />
+            <element signature="e#4755#4756#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -449,8 +457,8 @@
           <caret line="28" column="30" lean-forward="true" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4698#4699#0" expanded="true" />
-            <element signature="e#4725#4726#0" expanded="true" />
+            <element signature="e#4728#4729#0" expanded="true" />
+            <element signature="e#4755#4756#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -485,8 +493,8 @@
           <caret line="61" column="31" lean-forward="true" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4698#4699#0" expanded="true" />
-            <element signature="e#4725#4726#0" expanded="true" />
+            <element signature="e#4728#4729#0" expanded="true" />
+            <element signature="e#4755#4756#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -517,12 +525,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chess/game/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state relative-caret-position="282">
+          <caret line="112" column="49" lean-forward="true" selection-start-line="112" selection-start-column="49" selection-end-line="112" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4698#4699#0" expanded="true" />
-            <element signature="e#4725#4726#0" expanded="true" />
+            <element signature="e#4728#4729#0" expanded="true" />
+            <element signature="e#4755#4756#0" expanded="true" />
           </folding>
         </state>
       </provider>
