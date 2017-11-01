@@ -61,8 +61,7 @@ public class Board {
     public Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         if (isValidPlayerTurn(player) && isPlayerPiece(player, from)) {
             return movePiece(player, from, to);
-        }
-        else return false;
+        } else return false;
     }
 
     private Boolean isValidPlayerTurn(int player) {
@@ -74,12 +73,11 @@ public class Board {
     }
 
     private Boolean movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        if(isValidMove(player, from, to)) {
+        if (isValidMove(player, from, to)) {
             board[from.getKey()][from.getValue()] = 0;
             board[to.getKey()][to.getValue()] = player;
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     /**
@@ -91,59 +89,46 @@ public class Board {
      */
 
     private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        if(player == 1)
-            return isValidMovePlayer1(from, to);
-        else
-            return isValidMovePlayer2(from, to);
-    }
+        int forward = player == 1 ? 1 : -1;
+        int firstPieceIndex = player == 1 ? 1 : 6;
 
-
-    private Boolean isValidMovePlayer1(Pair<Integer, Integer> from, Pair<Integer, Integer> to){
-        if(from.getKey() == 1)
-            return firstTimePlayer1(from, to) || dealMovePlayer1(from, to);
+        if (from.getKey() == firstPieceIndex)
+            return isFirstTimeMovingPiece(from, to, forward) || isMovingCorrectly(from, to, forward);
         else
-            return dealMovePlayer1(from, to);
+            return isMovingCorrectly(from, to, forward);
     }
 
     /**
-     *  Key => row
-     *  Value => column
+     * Key => row
+     * Value => column
      */
-    private Boolean firstTimePlayer1(Pair<Integer, Integer> from, Pair<Integer, Integer> to){
+    private Boolean isFirstTimeMovingPiece(Pair<Integer, Integer> from, Pair<Integer, Integer> to, int forward) {
         //moving 2 box straight => valid cause its first piece
-        if(to.getValue().intValue() == from.getValue().intValue()
-                && to.getKey() == (from.getKey() + 2)
-                && board[to.getKey()][to.getValue()] == 0)
-            return true;
-
+        return to.getValue().intValue() == from.getValue().intValue()
+                && to.getKey() == (from.getKey() + 2 * forward)
+                && board[to.getKey()][to.getValue()] == 0;
     }
 
-    private Boolean dealMovePlayer1(Pair<Integer, Integer> from, Pair<Integer, Integer> to){
+    private Boolean isMovingCorrectly(Pair<Integer, Integer> from, Pair<Integer, Integer> to, int forward) {
         //moving 1 box straight
-        if(to.getValue().intValue() == from.getValue().intValue()
-                && to.getKey() == (from.getKey() + 1)
+        if (to.getValue().intValue() == from.getValue().intValue()
+                && to.getKey() == (from.getKey() + forward)
                 && board[to.getKey()][to.getValue()] == 0)
             return true;
 
 
         //moving 1 box to the right, eating an opposing piece
-        if(to.getValue() == (from.getValue() + 1)
-                && to.getKey() == (from.getKey() + 1)
+        if (to.getValue() == (from.getValue() + 1)
+                && to.getKey() == (from.getKey() + forward)
                 && board[to.getKey()][to.getValue()] == 2)
             return true;
 
 
         //moving 1 box to the left, eating an opposing piece
         return to.getValue() == (from.getValue() - 1)
-                && to.getKey() == (from.getKey() + 1)
+                && to.getKey() == (from.getKey() + forward)
                 && board[to.getKey()][to.getValue()] == 2;
     }
-
-
-    private Boolean isValidMovePlayer2(Pair<Integer, Integer> from, Pair<Integer, Integer> to){
-        return true;
-    }
-
 
 
     private void initiateBoard() {
