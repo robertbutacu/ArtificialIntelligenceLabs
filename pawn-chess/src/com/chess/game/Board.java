@@ -16,7 +16,7 @@ public class Board {
         initializeBoard();
     }
 
-    public List<Pair<Integer, Integer>> retrievePawns(int player){
+    public List<Pair<Integer, Integer>> retrievePawns(int player) {
         List<Pair<Integer, Integer>> playerPawns = new ArrayList<>();
 
         for (int i = 0; i < board.length; i++) {
@@ -65,20 +65,19 @@ public class Board {
         return 4;
     }
 
-    private boolean columnBlockedByOpponentPiece(Pair<Integer,Integer> coordinates) {
+    private boolean columnBlockedByOpponentPiece(Pair<Integer, Integer> coordinates) {
         return board[coordinates.getKey() + 1][coordinates.getValue()] != 0;
     }
 
-    private boolean canEatOpponentPiece(Pair<Integer,Integer> coordinates) {
+    private boolean canEatOpponentPiece(Pair<Integer, Integer> coordinates) {
         return (board[coordinates.getKey() + 1][coordinates.getValue() - 1] != 0) ||
                 (board[coordinates.getKey() + 1][coordinates.getValue() + 1] != 0);
     }
 
     /**
-     *
      * @param player - bot or human
-     * @param from - starting point of the piece
-     * @param to - end point of the piece
+     * @param from   - starting point of the piece
+     * @param to     - end point of the piece
      * @return - true if the piece has been moved, false otherwise
      */
     Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
@@ -105,24 +104,25 @@ public class Board {
 
     /**
      * It is a valid move in the situations:
-     *  1. moves 1 box ahead and there is an empty spot
-     *  2. starting point -> can move 1 or 2 pieces ahead
-     *  3. diagonally 1 box, in order to eat an enemy piece
+     * 1. moves 1 box ahead and there is an empty spot
+     * 2. starting point -> can move 1 or 2 pieces ahead
+     * 3. diagonally 1 box, in order to eat an enemy piece
      *
      * @param player - 1 or 2
-     * @param from - starting point
-     * @param to - end position
+     * @param from   - starting point
+     * @param to     - end position
      * @return true if its valid move, false otherwise
      */
     public Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         // one player starts from 6th row, coming down to 0, the other from 1st row, going up to 7th
-        int forward         = player == 1 ? 1 : -1;
+        int forward = player == 1 ? 1 : -1;
         int firstPieceIndex = player == 1 ? 1 : 6;
-        int enemy           = player == 1 ? 2 : 1;
+        int enemy = player == 1 ? 2 : 1;
 
         return isFirstTimeMovingPiece(firstPieceIndex, from, to, forward)
                 || isMovingCorrectly(enemy, from, to, forward);
     }
+
     /**
      * Key => row
      * Value => column
@@ -182,14 +182,14 @@ public class Board {
 
         boardView.append(" \t");
 
-        for (int i = 0; i <8; i++) {
-            boardView.append(i+1).append(" ");
+        for (int i = 0; i < 8; i++) {
+            boardView.append(i + 1).append(" ");
         }
 
         boardView.append("\n\n");
 
-        for (int i = 0; i <=7; i++) {
-            boardView.append(i+1).append("\t");
+        for (int i = 0; i <= 7; i++) {
+            boardView.append(i + 1).append("\t");
             for (int j = 0; j < 8; j++) {
                 boardView.append(board[i][j]);
                 boardView.append(" ");

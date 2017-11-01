@@ -33,7 +33,7 @@ public class GameManager {
             System.out.println(board);
 
             if (this.turn == 1) {
-                while(!this.board.move(this.turn, getUserInput("from"), getUserInput("to"))){
+                while (!this.board.move(this.turn, getUserInput("from"), getUserInput("to"))) {
                     System.out.println(board);
                     System.out.println("Invalid move! Please choose again!");
                 }
@@ -59,17 +59,17 @@ public class GameManager {
         System.out.print("Player move " + action + ": ");
         int input = this.scanner.nextInt();
         System.out.println();
-        return new Pair<>((input / 10)-1, (input % 10)-1);
+        return new Pair<>((input / 10) - 1, (input % 10) - 1);
     }
 
     private int changeTurn(int turn) {
         return turn == 1 ? 2 : 1;
     }
 
-    private void displayWinner(int status){
-        if(status==4)
+    private void displayWinner(int status) {
+        if (status == 4)
             System.out.println("Draw. There are no other possible moves");
         else
-            System.out.println("Player "+status+" wins");
+            System.out.println("Player " + status + " wins");
     }
 }

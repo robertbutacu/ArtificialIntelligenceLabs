@@ -6,7 +6,6 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class Bot {
     public Bot() {
@@ -19,24 +18,30 @@ public class Bot {
     public Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> chooseMove(Board board) {
         List<Pair<Integer, Integer>> pawns = board.retrievePawns(2);
 
-        List<Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>> movesList=getPossibleMoves(board, pawns);
+        List<Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>> movesList = getPossibleMoves(board, pawns);
 
         System.out.println("Possible bot moves: ");
         movesList.stream()
-                .map(x-> new Pair<>(new Pair<>(x.getKey().getKey()+1,x.getKey().getValue()+1),new Pair<>(x.getValue().getKey()+1,x.getValue().getValue()+1)))
-                .forEach((x)->System.out.print(x+" "));
+                .map(x ->
+                        new Pair<>(
+                                new Pair<>(x.getKey().getKey() + 1,
+                                        x.getKey().getValue() + 1),
+                                new Pair<>(x.getValue().getKey() + 1,
+                                        x.getValue().getValue() + 1)
+                        ))
+                .forEach((x) -> System.out.print(x + " "));
         System.out.println();
 
         int random = getRandomMoveIndex(movesList.size());
-        Pair<Pair<Integer,Integer>,Pair<Integer,Integer>> chosenMove= movesList.get(getRandomMoveIndex(movesList.size()));
+        Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> chosenMove = movesList.get(getRandomMoveIndex(movesList.size()));
         printChosenMove(chosenMove);
         return chosenMove;
     }
 
-    private void printChosenMove(Pair<Pair<Integer,Integer>,Pair<Integer,Integer>> chosenMove){
+    private void printChosenMove(Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> chosenMove) {
         System.out.println("Chosen move:");
-        System.out.println((chosenMove.getKey().getKey()+1)+"="+(chosenMove.getKey().getValue()+1)+"="+
-                        (chosenMove.getValue().getKey()+1)+"="+(chosenMove.getValue().getValue()+1));
+        System.out.println((chosenMove.getKey().getKey() + 1) + "=" + (chosenMove.getKey().getValue() + 1) + "=" +
+                (chosenMove.getValue().getKey() + 1) + "=" + (chosenMove.getValue().getValue() + 1));
     }
 
     private int getRandomMoveIndex(int listSize) {
@@ -79,7 +84,7 @@ public class Bot {
         return possibleMoves;
     }
 
-    private Boolean isValid(Pair<Integer, Integer> input){
+    private Boolean isValid(Pair<Integer, Integer> input) {
         return (input.getValue() >= 0 && input.getValue() <= 7)
                 && (input.getKey() <= 7 && input.getKey() >= 0);
     }

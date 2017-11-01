@@ -1,6 +1,5 @@
 package com.chess;
 
-import com.chess.game.Board;
 import com.chess.game.GameManager;
 
 public class Main {
