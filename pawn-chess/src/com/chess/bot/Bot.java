@@ -16,10 +16,7 @@ public class Bot {
      * @return - best move given a board
      */
     public Pair<Pair<Integer, Integer>,Pair<Integer,Integer>> chooseMove(Board board){
-        List<Pair<Integer, Integer>> pawns;
-        pawns = board.retrievePawns(2);
-
-        System.out.println(pawns);
+        List<Pair<Integer, Integer>> pawns = board.retrievePawns(2);
 
         return new Pair<>(new Pair<>(1, 1),new Pair<>(2,2));
     }
