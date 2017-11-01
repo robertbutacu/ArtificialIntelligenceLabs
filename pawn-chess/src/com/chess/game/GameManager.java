@@ -44,26 +44,9 @@ public class GameManager {
             this.turn = changeTurn(turn);
         }
 
-        printWinner();
-
+        displayWinner(board.gameStatus());
     }
 
-    private void printWinner(){
-        int winner;
-
-        winner = board.gameStatus();
-
-        if(winner != 0){
-            if(winner == 1)
-                System.out.println("You won!");
-
-            if(winner == 2)
-                System.out.println("The bot won!");
-
-            if(winner == 4)
-                System.out.println("It's a draw!");
-        }
-    }
 
     //1==player,2==bot
     private int randomize() {
@@ -74,12 +57,19 @@ public class GameManager {
     //action=from/to -> remove duplicate code
     private Pair<Integer, Integer> getUserInput(String action) {
         System.out.print("Player move " + action + ": ");
-        System.out.println();
         int input = this.scanner.nextInt();
-        return new Pair<>(input / 10, input % 10);
+        System.out.println();
+        return new Pair<>((input / 10)-1, (input % 10)-1);
     }
 
     private int changeTurn(int turn) {
         return turn == 1 ? 2 : 1;
+    }
+
+    private void displayWinner(int status){
+        if(status==4)
+            System.out.println("Draw. There are no other possible moves");
+        else
+            System.out.println("Player "+status+" wins");
     }
 }
