@@ -1,13 +1,14 @@
 package com.chess;
 
 import com.chess.game.Board;
+import com.chess.game.GameManager;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Board board = new Board();
+        GameManager gm = new GameManager();
 
-        System.out.println(board);
+        gm.play();
     }
 }

@@ -15,46 +15,49 @@ public class GameManager {
     private int turn;
 
 
-    public GameManager(){
-        this.board=new Board();
-        this.scanner=new Scanner(System.in);
-        this.bot=new Bot();
+    public GameManager() {
+        this.board = new Board();
+        this.scanner = new Scanner(System.in);
+        this.bot = new Bot();
     }
 
     /**
      * Central brain, big while(true) loop, every player makes a move.
      */
-    public void play(){
+    public void play() {
 
-        this.turn=randomize();
-        Pair<Pair<Integer,Integer>,Pair<Integer,Integer>> bestMove;
+        this.turn = randomize();
+        Pair<Pair<Integer, Integer>, Pair<Integer, Integer>> bestMove;
 
-        while(board.gameStatus()==0)
-            if(this.turn==1) {
+        while (board.gameStatus() == 0) {
+            System.out.println(board);
+
+            if (this.turn == 1) {
                 this.board.move(this.turn, getUserInput("from"), getUserInput("to"));
+            } else {
+                bestMove = this.bot.chooseMove(this.board);
+                this.board.move(this.turn, bestMove.getKey(), bestMove.getValue());
             }
-            else{
-                bestMove=this.bot.chooseMove(this.board);
-                this.board.move(this.turn,bestMove.getKey(),bestMove.getValue());
-            }
-            this.turn=changeTurn(turn);
+            this.turn = changeTurn(turn);
+        }
+
     }
 
     //1==player,2==bot
-    private int randomize(){
-        Random rand=new Random();
-        return rand.nextInt(2)+1;
+    private int randomize() {
+        Random rand = new Random();
+        return rand.nextInt(2) + 1;
     }
 
     //action=from/to -> remove duplicate code
-    private Pair<Integer,Integer> getUserInput(String action){
-        System.out.print("Player move "+action+": ");
+    private Pair<Integer, Integer> getUserInput(String action) {
+        System.out.print("Player move " + action + ": ");
         System.out.println();
         int input = this.scanner.nextInt();
-        return new Pair<>(input /10, input %10);
+        return new Pair<>(input / 10, input % 10);
     }
 
-    private int changeTurn(int turn){
-        return turn==1 ? 2 : 1;
+    private int changeTurn(int turn) {
+        return turn == 1 ? 2 : 1;
     }
 }
