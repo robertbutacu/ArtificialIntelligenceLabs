@@ -58,6 +58,13 @@ public class Board {
         return (board[row + 1][column - 1] != 0) || (board[row + 1][column + 1] != 0);
     }
 
+    /**
+     *
+     * @param player - bot or human
+     * @param from - starting point of the piece
+     * @param to - end point of the piece
+     * @return - true if the piece has been moved, false otherwise
+     */
     public Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         if (isValidPlayerTurn(player) && isPlayerPiece(player, from)) {
             return movePiece(player, from, to);
@@ -81,35 +88,45 @@ public class Board {
     }
 
     /**
-     * There are  possible moves:
-     * <p>
-     * 1. moves for the first time a piece => means to._1 - from._1 <= 2
-     * 2. piece already has been moved: to._1 - from._1 <= 1
-     * 3. there is a piece of the opponent in either to._2 + 1 or to._2 - 1
+     * It is a valid move in the situations:
+     *  1. moves 1 box ahead and there is an empty spot
+     *  2. starting point -> can move 1 or 2 pieces ahead
+     *  3. diagonally 1 box, in order to eat an enemy piece
+     *
+     * @param player - 1 or 2
+     * @param from - starting point
+     * @param to - end position
+     * @return true if its valid move, false otherwise
      */
-
     private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        int forward = player == 1 ? 1 : -1;
+        // one player starts from 6th row, coming down to 0, the other from 1st row, going up to 7th
+        int forward         = player == 1 ? 1 : -1;
         int firstPieceIndex = player == 1 ? 1 : 6;
+        int enemy           = player == 1 ? 2 : 1;
 
-        if (from.getKey() == firstPieceIndex)
-            return isFirstTimeMovingPiece(from, to, forward) || isMovingCorrectly(from, to, forward);
-        else
-            return isMovingCorrectly(from, to, forward);
+        return isFirstTimeMovingPiece(firstPieceIndex, from, to, forward)
+                || isMovingCorrectly(enemy, from, to, forward);
     }
 
     /**
      * Key => row
      * Value => column
      */
-    private Boolean isFirstTimeMovingPiece(Pair<Integer, Integer> from, Pair<Integer, Integer> to, int forward) {
-        //moving 2 box straight => valid cause its first piece
-        return to.getValue().intValue() == from.getValue().intValue()
+    private Boolean isFirstTimeMovingPiece(int firstPieceIndex,
+                                           Pair<Integer, Integer> from,
+                                           Pair<Integer, Integer> to,
+                                           int forward) {
+        //moving 2 boxes straight => valid cause its first piece
+        return from.getValue() == firstPieceIndex
+                && to.getValue().intValue() == from.getValue().intValue()
                 && to.getKey() == (from.getKey() + 2 * forward)
                 && board[to.getKey()][to.getValue()] == 0;
     }
 
-    private Boolean isMovingCorrectly(Pair<Integer, Integer> from, Pair<Integer, Integer> to, int forward) {
+    private Boolean isMovingCorrectly(int enemy,
+                                      Pair<Integer, Integer> from,
+                                      Pair<Integer, Integer> to,
+                                      int forward) {
         //moving 1 box straight
         if (to.getValue().intValue() == from.getValue().intValue()
                 && to.getKey() == (from.getKey() + forward)
@@ -120,14 +137,14 @@ public class Board {
         //moving 1 box to the right, eating an opposing piece
         if (to.getValue() == (from.getValue() + 1)
                 && to.getKey() == (from.getKey() + forward)
-                && board[to.getKey()][to.getValue()] == 2)
+                && board[to.getKey()][to.getValue()] == enemy)
             return true;
 
 
         //moving 1 box to the left, eating an opposing piece
         return to.getValue() == (from.getValue() - 1)
                 && to.getKey() == (from.getKey() + forward)
-                && board[to.getKey()][to.getValue()] == 2;
+                && board[to.getKey()][to.getValue()] == enemy;
     }
 
 
