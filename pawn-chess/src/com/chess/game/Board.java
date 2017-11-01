@@ -2,7 +2,9 @@ package com.chess.game;
 
 import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.lang.Integer.max;
 
@@ -12,6 +14,19 @@ public class Board {
     Board() {
         board = new int[8][8];
         initializeBoard();
+    }
+
+    public List<Pair<Integer, Integer>> retrievePawns(int player){
+        List<Pair<Integer, Integer>> playerPawns = new ArrayList<>();
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] == player)
+                    playerPawns.add(new Pair<>(i, j));
+            }
+        }
+
+        return playerPawns;
     }
 
     /**
