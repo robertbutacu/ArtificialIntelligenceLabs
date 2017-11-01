@@ -41,6 +41,25 @@ public class GameManager {
             this.turn = changeTurn(turn);
         }
 
+        printWinner();
+
+    }
+
+    private void printWinner(){
+        int winner;
+
+        winner = board.gameStatus();
+
+        if(winner != 0){
+            if(winner == 1)
+                System.out.println("You won!");
+
+            if(winner == 2)
+                System.out.println("The bot won!");
+
+            if(winner == 4)
+                System.out.println("It's a draw!");
+        }
     }
 
     //1==player,2==bot
