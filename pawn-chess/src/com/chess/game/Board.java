@@ -58,15 +58,28 @@ public class Board {
         return (board[row + 1][column - 1] != 0) || (board[row + 1][column + 1] != 0);
     }
 
-    public void move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+    public Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         if (isValidPlayerTurn(player) && isPlayerPiece(player, from)) {
-            movePiece(player, from, to);
+            return movePiece(player, from, to);
         }
+        else return false;
     }
 
-    private void movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        board[from.getKey()][from.getValue()] = 0;
-        board[to.getKey()][to.getValue()] = player;
+    private Boolean isValidPlayerTurn(int player) {
+        return player == 1 || player == 2;
+    }
+
+    private Boolean isPlayerPiece(int player, Pair<Integer, Integer> coordinates) {
+        return board[coordinates.getKey()][coordinates.getValue()] == player;
+    }
+
+    private Boolean movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        if(isValidMove(player, from, to)) {
+            board[from.getKey()][from.getValue()] = 0;
+            board[to.getKey()][to.getValue()] = player;
+            return true;
+        }
+        else return false;
     }
 
     /**
@@ -78,16 +91,22 @@ public class Board {
      */
 
     private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        if(player == 1)
+            return isValidMovePlayer1(from, to);
+        else
+            return isValidMovePlayer2(from, to);
+    }
+
+    private Boolean isValidMovePlayer1(Pair<Integer, Integer> from, Pair<Integer, Integer> to){
         return true;
     }
 
-    private Boolean isValidPlayerTurn(int player) {
-        return player == 1 || player == 2;
+
+    private Boolean isValidMovePlayer2(Pair<Integer, Integer> from, Pair<Integer, Integer> to){
+        return true;
     }
 
-    private Boolean isPlayerPiece(int player, Pair<Integer, Integer> coordinates) {
-        return board[coordinates.getKey()][coordinates.getValue()] == player;
-    }
+
 
     private void initiateBoard() {
         for (int i = 0; i < 8; i++) {
