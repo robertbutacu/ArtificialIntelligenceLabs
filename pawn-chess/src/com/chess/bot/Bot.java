@@ -21,12 +21,22 @@ public class Bot {
 
         List<Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>> movesList=getPossibleMoves(board, pawns);
 
+        System.out.println("Possible bot moves: ");
         movesList.stream()
                 .map(x-> new Pair<>(new Pair<>(x.getKey().getKey()+1,x.getKey().getValue()+1),new Pair<>(x.getValue().getKey()+1,x.getValue().getValue()+1)))
-                .forEach(System.out::println);
+                .forEach((x)->System.out.print(x+" "));
+        System.out.println();
 
+        int random = getRandomMoveIndex(movesList.size());
+        Pair<Pair<Integer,Integer>,Pair<Integer,Integer>> chosenMove= movesList.get(getRandomMoveIndex(movesList.size()));
+        printChosenMove(chosenMove);
+        return chosenMove;
+    }
 
-        return movesList.get(getRandomMoveIndex(movesList.size()));
+    private void printChosenMove(Pair<Pair<Integer,Integer>,Pair<Integer,Integer>> chosenMove){
+        System.out.println("Chosen move:");
+        System.out.println((chosenMove.getKey().getKey()+1)+"="+(chosenMove.getKey().getValue()+1)+"="+
+                        (chosenMove.getValue().getKey()+1)+"="+(chosenMove.getValue().getValue()+1));
     }
 
     private int getRandomMoveIndex(int listSize) {
