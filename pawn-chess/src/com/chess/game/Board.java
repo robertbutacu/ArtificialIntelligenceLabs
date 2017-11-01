@@ -27,11 +27,11 @@ public class Board {
     }
 
     private int playerWins() {
-        return max((Arrays.stream(board[0]).sum() > 0 ? 1 : 0), noEnemyPiecesLeft(2));
+        return max((Arrays.stream(board[7]).sum() > 0 ? 1 : 0), noEnemyPiecesLeft(2));
     }
 
     private int botWins() {
-        return max((Arrays.stream(board[7]).sum() > 0 ? 2 : 0), noEnemyPiecesLeft(1));
+        return max((Arrays.stream(board[0]).sum() > 0 ? 2 : 0), noEnemyPiecesLeft(1));
     }
 
     private int noEnemyPiecesLeft(int enemy) {

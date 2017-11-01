@@ -41,6 +41,7 @@ public class GameManager {
             this.turn = changeTurn(turn);
         }
 
+        displayWinner(board.gameStatus());
     }
 
     //1==player,2==bot
@@ -59,5 +60,12 @@ public class GameManager {
 
     private int changeTurn(int turn) {
         return turn == 1 ? 2 : 1;
+    }
+
+    private void displayWinner(int status){
+        if(status==4)
+            System.out.println("Draw. There are no other possible moves");
+        else
+            System.out.println("Player "+status+" wins");
     }
 }
