@@ -59,27 +59,17 @@ public class Board {
                 (board[coordinates.getKey() + 1][coordinates.getValue() + 1] != 0);
     }
 
-    public void move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        if (isValidPlayerTurn(player) && isPlayerPiece(player, from)) {
-            movePiece(player, from, to);
-        }
-    }
-
-    private void movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        board[from.getKey()][from.getValue()] = 0;
-        board[to.getKey()][to.getValue()] = player;
-    }
-
     /**
-     * There are  possible moves:
-     * <p>
-     * 1. moves for the first time a piece => means to._1 - from._1 <= 2
-     * 2. piece already has been moved: to._1 - from._1 <= 1
-     * 3. there is a piece of the opponent in either to._2 + 1 or to._2 - 1
+     *
+     * @param player - bot or human
+     * @param from - starting point of the piece
+     * @param to - end point of the piece
+     * @return - true if the piece has been moved, false otherwise
      */
-
-    private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
-        return true;
+    public Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        if (isValidPlayerTurn(player) && isPlayerPiece(player, from)) {
+            return movePiece(player, from, to);
+        } else return false;
     }
 
     private Boolean isValidPlayerTurn(int player) {
@@ -89,6 +79,75 @@ public class Board {
     private Boolean isPlayerPiece(int player, Pair<Integer, Integer> coordinates) {
         return board[coordinates.getKey()][coordinates.getValue()] == player;
     }
+
+    private Boolean movePiece(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        if (isValidMove(player, from, to)) {
+            board[from.getKey()][from.getValue()] = 0;
+            board[to.getKey()][to.getValue()] = player;
+            return true;
+        } else return false;
+    }
+
+    /**
+     * It is a valid move in the situations:
+     *  1. moves 1 box ahead and there is an empty spot
+     *  2. starting point -> can move 1 or 2 pieces ahead
+     *  3. diagonally 1 box, in order to eat an enemy piece
+     *
+     * @param player - 1 or 2
+     * @param from - starting point
+     * @param to - end position
+     * @return true if its valid move, false otherwise
+     */
+    private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        // one player starts from 6th row, coming down to 0, the other from 1st row, going up to 7th
+        int forward         = player == 1 ? 1 : -1;
+        int firstPieceIndex = player == 1 ? 1 : 6;
+        int enemy           = player == 1 ? 2 : 1;
+
+        return isFirstTimeMovingPiece(firstPieceIndex, from, to, forward)
+                || isMovingCorrectly(enemy, from, to, forward);
+    }
+
+    /**
+     * Key => row
+     * Value => column
+     */
+    private Boolean isFirstTimeMovingPiece(int firstPieceIndex,
+                                           Pair<Integer, Integer> from,
+                                           Pair<Integer, Integer> to,
+                                           int forward) {
+        //moving 2 boxes straight => valid cause its first piece
+        return from.getValue() == firstPieceIndex
+                && to.getValue().intValue() == from.getValue().intValue()
+                && to.getKey() == (from.getKey() + 2 * forward)
+                && board[to.getKey()][to.getValue()] == 0;
+    }
+
+    private Boolean isMovingCorrectly(int enemy,
+                                      Pair<Integer, Integer> from,
+                                      Pair<Integer, Integer> to,
+                                      int forward) {
+        //moving 1 box straight
+        if (to.getValue().intValue() == from.getValue().intValue()
+                && to.getKey() == (from.getKey() + forward)
+                && board[to.getKey()][to.getValue()] == 0)
+            return true;
+
+
+        //moving 1 box to the right, eating an opposing piece
+        if (to.getValue() == (from.getValue() + 1)
+                && to.getKey() == (from.getKey() + forward)
+                && board[to.getKey()][to.getValue()] == enemy)
+            return true;
+
+
+        //moving 1 box to the left, eating an opposing piece
+        return to.getValue() == (from.getValue() - 1)
+                && to.getKey() == (from.getKey() + forward)
+                && board[to.getKey()][to.getValue()] == enemy;
+    }
+
 
     private void initiateBoard() {
         for (int i = 0; i < 8; i++) {
