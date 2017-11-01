@@ -57,9 +57,9 @@ public class GameManager {
     //action=from/to -> remove duplicate code
     private Pair<Integer, Integer> getUserInput(String action) {
         System.out.print("Player move " + action + ": ");
-        System.out.println();
         int input = this.scanner.nextInt();
-        return new Pair<>(input / 10, input % 10);
+        System.out.println();
+        return new Pair<>((input / 10)-1, (input % 10)-1);
     }
 
     private int changeTurn(int turn) {

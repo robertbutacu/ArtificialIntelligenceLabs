@@ -123,7 +123,6 @@ public class Board {
         return isFirstTimeMovingPiece(firstPieceIndex, from, to, forward)
                 || isMovingCorrectly(enemy, from, to, forward);
     }
-
     /**
      * Key => row
      * Value => column
@@ -133,7 +132,7 @@ public class Board {
                                            Pair<Integer, Integer> to,
                                            int forward) {
         //moving 2 boxes straight => valid cause its first piece
-        return from.getValue() == firstPieceIndex
+        return from.getKey() == firstPieceIndex
                 && to.getValue().intValue() == from.getValue().intValue()
                 && to.getKey() == (from.getKey() + 2 * forward)
                 && board[to.getKey()][to.getValue()] == 0;
@@ -183,14 +182,14 @@ public class Board {
 
         boardView.append(" \t");
 
-        for (int i = 0; i < 8; i++) {
-            boardView.append(i).append(" ");
+        for (int i = 0; i <8; i++) {
+            boardView.append(i+1).append(" ");
         }
 
         boardView.append("\n\n");
 
-        for (int i = 0; i < 8; i++) {
-            boardView.append(i).append("\t");
+        for (int i = 0; i <=7; i++) {
+            boardView.append(i+1).append("\t");
             for (int j = 0; j < 8; j++) {
                 boardView.append(board[i][j]);
                 boardView.append(" ");
