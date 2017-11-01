@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3184279-bf0a-403c-9bd4-d8ce40f4f286" name="Default" comment="" />
+    <list default="true" id="94a05d04-f5e6-495f-bf2f-0a87c9dfc4c1" name="Default" comment="" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,7 +10,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/chess/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -34,17 +34,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-              <folding>
-                <marker date="1509562085209" expanded="true" signature="33624:33666" ph="..." />
-                <marker date="1509562085209" expanded="true" signature="33624:33684" ph="..." />
-                <marker date="1509562085209" expanded="true" signature="33624:33697" ph="..." />
-                <marker date="1509562085209" expanded="true" signature="33624:33712" ph="..." />
-              </folding>
+            <state relative-caret-position="374">
+              <caret line="22" column="63" lean-forward="true" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,8 +47,8 @@
       <file leaf-file-name="Bot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/chess/bot/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="952">
+              <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -62,20 +57,11 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/chess/game/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+            <state relative-caret-position="510">
+              <caret line="86" column="28" lean-forward="true" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
               <folding>
-                <marker date="1509559120579" expanded="true" signature="2410:2421" ph=" { " />
-                <marker date="1509559120579" expanded="true" signature="2455:2461" ph=" }" />
-                <marker date="1509559120579" expanded="true" signature="2545:2630" ph="{...}" />
-                <marker date="1509559120579" expanded="true" signature="2730:2947" ph="{...}" />
-                <marker date="1509559120579" expanded="true" signature="2953:3343" ph="/**...*/" />
-                <marker date="1509559120579" expanded="true" signature="3444:3845" ph="{...}" />
-                <marker date="1509559120579" expanded="true" signature="3851:3903" ph="/**...*/" />
-                <marker date="1509559120579" expanded="true" signature="4166:4485" ph="{...}" />
-                <marker date="1509559120579" expanded="true" signature="4719:5472" ph="{...}" />
-                <marker date="1509559120579" expanded="true" signature="5508:5812" ph="{...}" />
-                <marker date="1509559120579" expanded="true" signature="5857:6394" ph="{...}" />
+                <marker date="1509562143074" expanded="true" signature="5963:6267" ph="{...}" />
+                <marker date="1509562143074" expanded="true" signature="6312:6849" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -96,7 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/chess/game/GameManager.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
@@ -299,7 +284,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="831000" />
+    <option name="totallyTimeSpent" value="181000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="840" extended-state="6" />
@@ -383,17 +368,8 @@
         <state relative-caret-position="782">
           <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
           <folding>
-            <marker date="1509559120579" expanded="true" signature="2410:2421" ph=" { " />
-            <marker date="1509559120579" expanded="true" signature="2455:2461" ph=" }" />
-            <marker date="1509559120579" expanded="true" signature="2545:2630" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="2730:2947" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="2953:3343" ph="/**...*/" />
-            <marker date="1509559120579" expanded="true" signature="3444:3845" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="3851:3903" ph="/**...*/" />
-            <marker date="1509559120579" expanded="true" signature="4166:4485" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="4719:5472" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="5508:5812" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="5857:6394" ph="{...}" />
+            <marker date="1509562143074" expanded="true" signature="5963:6267" ph="{...}" />
+            <marker date="1509562143074" expanded="true" signature="6312:6849" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -412,41 +388,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chess/bot/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="952">
+          <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chess/game/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+        <state relative-caret-position="510">
+          <caret line="86" column="28" lean-forward="true" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
           <folding>
-            <marker date="1509559120579" expanded="true" signature="2410:2421" ph=" { " />
-            <marker date="1509559120579" expanded="true" signature="2455:2461" ph=" }" />
-            <marker date="1509559120579" expanded="true" signature="2545:2630" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="2730:2947" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="2953:3343" ph="/**...*/" />
-            <marker date="1509559120579" expanded="true" signature="3444:3845" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="3851:3903" ph="/**...*/" />
-            <marker date="1509559120579" expanded="true" signature="4166:4485" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="4719:5472" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="5508:5812" ph="{...}" />
-            <marker date="1509559120579" expanded="true" signature="5857:6394" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding>
-            <marker date="1509562085209" expanded="true" signature="33624:33666" ph="..." />
-            <marker date="1509562085209" expanded="true" signature="33624:33684" ph="..." />
-            <marker date="1509562085209" expanded="true" signature="33624:33697" ph="..." />
-            <marker date="1509562085209" expanded="true" signature="33624:33712" ph="..." />
+            <marker date="1509562143074" expanded="true" signature="5963:6267" ph="{...}" />
+            <marker date="1509562143074" expanded="true" signature="6312:6849" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -467,6 +421,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="63" lean-forward="true" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
           <folding />
         </state>
       </provider>

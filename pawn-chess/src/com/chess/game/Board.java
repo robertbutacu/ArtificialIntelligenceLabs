@@ -2,7 +2,9 @@ package com.chess.game;
 
 import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.lang.Integer.max;
 
@@ -11,7 +13,20 @@ public class Board {
 
     Board() {
         board = new int[8][8];
-        initiateBoard();
+        initializeBoard();
+    }
+
+    public List<Pair<Integer, Integer>> retrievePawns(int player){
+        List<Pair<Integer, Integer>> playerPawns = new ArrayList<>();
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] == player)
+                    playerPawns.add(new Pair<>(i, j));
+            }
+        }
+
+        return playerPawns;
     }
 
     /**
@@ -99,7 +114,7 @@ public class Board {
      * @param to - end position
      * @return true if its valid move, false otherwise
      */
-    private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+    public Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         // one player starts from 6th row, coming down to 0, the other from 1st row, going up to 7th
         int forward         = player == 1 ? 1 : -1;
         int firstPieceIndex = player == 1 ? 1 : 6;
@@ -149,7 +164,7 @@ public class Board {
     }
 
 
-    private void initiateBoard() {
+    private void initializeBoard() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == 1)
