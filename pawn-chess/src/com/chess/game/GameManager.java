@@ -33,7 +33,10 @@ public class GameManager {
             System.out.println(board);
 
             if (this.turn == 1) {
-                this.board.move(this.turn, getUserInput("from"), getUserInput("to"));
+                while(!this.board.move(this.turn, getUserInput("from"), getUserInput("to"))){
+                    System.out.println(board);
+                    System.out.println("Invalid move! Please choose again!");
+                }
             } else {
                 bestMove = this.bot.chooseMove(this.board);
                 this.board.move(this.turn, bestMove.getKey(), bestMove.getValue());
