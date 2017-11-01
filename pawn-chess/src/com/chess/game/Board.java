@@ -9,7 +9,7 @@ import static java.lang.Integer.max;
 public class Board {
     private int[][] board;
 
-    public Board() {
+    Board() {
         board = new int[8][8];
         initiateBoard();
     }
@@ -22,7 +22,7 @@ public class Board {
      *
      * @return 0 => game still going, 1 => player, 2 => bot, or the other way around, 4 => draw
      */
-    public int gameStatus() {
+    int gameStatus() {
         return max(max(playerWins(), botWins()), isDraw());
     }
 
@@ -66,7 +66,7 @@ public class Board {
      * @param to - end point of the piece
      * @return - true if the piece has been moved, false otherwise
      */
-    public Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+    Boolean move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         if (isValidPlayerTurn(player) && isPlayerPiece(player, from)) {
             return movePiece(player, from, to);
         } else return false;
