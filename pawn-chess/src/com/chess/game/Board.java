@@ -114,7 +114,7 @@ public class Board {
      * @param to - end position
      * @return true if its valid move, false otherwise
      */
-    private Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+    public Boolean isValidMove(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         // one player starts from 6th row, coming down to 0, the other from 1st row, going up to 7th
         int forward         = player == 1 ? 1 : -1;
         int firstPieceIndex = player == 1 ? 1 : 6;
