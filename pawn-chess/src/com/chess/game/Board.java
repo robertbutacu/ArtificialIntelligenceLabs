@@ -45,17 +45,18 @@ public class Board {
         for (int i = 1; i < board.length - 1; i++)
             for (int j = 1; j < board.length - 1; j++)
                 if (board[i][j] == 1)
-                    if (!columnBlockedByOpponentPiece(i, j) || canEatOpponentPiece(i, j))
+                    if (!columnBlockedByOpponentPiece(new Pair<>(i, j)) || canEatOpponentPiece(new Pair<>(i, j)))
                         return 0;
         return 4;
     }
 
-    private boolean columnBlockedByOpponentPiece(int row, int column) {
-        return board[row + 1][column] != 0;
+    private boolean columnBlockedByOpponentPiece(Pair<Integer,Integer> coordinates) {
+        return board[coordinates.getKey() + 1][coordinates.getValue()] != 0;
     }
 
-    private boolean canEatOpponentPiece(int row, int column) {
-        return (board[row + 1][column - 1] != 0) || (board[row + 1][column + 1] != 0);
+    private boolean canEatOpponentPiece(Pair<Integer,Integer> coordinates) {
+        return (board[coordinates.getKey() + 1][coordinates.getValue() - 1] != 0) ||
+                (board[coordinates.getKey() + 1][coordinates.getValue() + 1] != 0);
     }
 
     public void move(int player, Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
