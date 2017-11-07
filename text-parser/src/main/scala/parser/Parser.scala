@@ -114,6 +114,14 @@ object Parser {
       None
     }
 
+    //left todo
+    /*
+      1. sparse, break, cut and remove all words to singular form ( so they can be classified correctly )
+      2. go through x and find the max occurence of a context > 0 and return the definition of the context
+      3. return string, if exists , as:
+        Word (line, indexOfWord) - definition.
+     */
+
     def count(propriety: String, sentence: List[String]): Int = {
       context.find(c => c.propriety == propriety) match {
         case None => 0
