@@ -105,10 +105,15 @@ object Parser {
       // The one with the highest count, is returned.
       wordDefinition match {
         case None             => None
-        case Some(definition) =>
+        case Some(definition) => definition.definitions
+          .map(d => (d, count(word, sentenceWords)))
       }
 
       None
+    }
+
+    def count(word: String, sentence: List[String]): Int = {
+      0
     }
 
     go(text, dictionary, context)
