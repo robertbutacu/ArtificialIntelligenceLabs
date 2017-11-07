@@ -111,14 +111,6 @@ object Parser {
       if(x.nonEmpty)
         println(x)
 
-      /*wordDefinition match {
-        case None => None
-        case Some(definition) => println(definition.definitions
-          .toList
-          .map(d => (d._1, count(d._1, sentenceWords)))
-          .maxBy(e => e._2))
-      }*/
-
       None
     }
 
