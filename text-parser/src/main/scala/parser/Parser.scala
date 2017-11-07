@@ -97,23 +97,39 @@ object Parser {
 
     def classifyWord(word: String, sentence: String): Option[String] = {
       val sentenceWords = sentence.split(" ").toList.filterNot(_ == word).map(_.toLowerCase())
-      val wordDefinition = dictionary.find(_.word == word.toLowerCase())
+      val wordDefinition = dictionary.filter(_.word == word.toLowerCase())
 
-
+      //println(sentenceWords)
       //for each possible definitions, count how many words that describe that certain context
       // are found in the sentence
       // The one with the highest count, is returned.
-      wordDefinition match {
-        case None             => None
-        case Some(definition) => definition.definitions
-          .map(d => (d, count(word, sentenceWords)))
-      }
+
+      val x = wordDefinition.flatMap(definition => definition.definitions
+        .toList
+        .map(d => (d._1, count(d._1, sentenceWords))))
+
+      if(x.nonEmpty)
+        println(x)
+
+      /*wordDefinition match {
+        case None => None
+        case Some(definition) => println(definition.definitions
+          .toList
+          .map(d => (d._1, count(d._1, sentenceWords)))
+          .maxBy(e => e._2))
+      }*/
 
       None
     }
 
-    def count(word: String, sentence: List[String]): Int = {
-      0
+    def count(propriety: String, sentence: List[String]): Int = {
+      context.find(c => c.propriety == propriety) match {
+        case None => 0
+        case Some(con) => con.contextOf.foldLeft(0)((total, curr) =>
+          if (sentence.contains(curr)) total + 1
+          else total
+        )
+      }
     }
 
     go(text, dictionary, context)
