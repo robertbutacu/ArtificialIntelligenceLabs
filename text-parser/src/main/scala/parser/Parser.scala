@@ -42,6 +42,8 @@ object Parser {
       //mapping definitions to actual objects so it will be easier to work with
       val definitions = definitionsNotNormalized.map(d => Definition(d._1,
         d._2.map(t => (getContext(t), getDefinition(t))).toMap))
+
+      println(analyzeText(textFile, definitions, context))
     } catch {
       case _: FileNotFoundException => println("Invalid file name!")
       case _: IOException => println("Oups! Its not you, its us!")
@@ -49,7 +51,7 @@ object Parser {
   }
 
   /** For an input like
-    *   [tamplarie] piesa mobiliera pe care se sta
+    * [tamplarie] piesa mobiliera pe care se sta
     * returns tamplarie
     *
     * It does so by splitting the input into a tuple: ("[tamplarie", "] piesa mobiliera pe care se sta").
@@ -57,13 +59,14 @@ object Parser {
     * After that, it is wanted to get the context, so only _1 of the tuple, and remove any unnecessary chars.
     * => dropWhile it is empty space or [.
     *
+    *
     * @param t - a singular definition
     * @return - the context of that definition
     */
   private def getContext(t: String): String = t.span(_ != ']')._1.dropWhile(c => c == ' ' || c == '[')
 
   /** For an input like
-    *  [tamplarie] piesa mobiliera pe care se sta
+    * [tamplarie] piesa mobiliera pe care se sta
     * returns piesa mobiliera pe care se sta
     *
     * It does so by splitting the input into a tuple: ("[tamplarie", "] piesa mobiliera pe care se sta").
@@ -71,8 +74,27 @@ object Parser {
     * After that , it is wanted to get the definition, so only _2 of the tuple, and remove any unnecessary chars.
     * => dropWhile it is empty or it is "]".
     *
+    *
     * @param t - a singular definition
     * @return - the definition of that definition
     */
   private def getDefinition(t: String): String = t.span(_ != ']')._2.dropWhile(c => c == ' ' || c == ']')
+
+  private def analyzeText(text: List[String], dictionary: List[Definition], context: List[Context]): List[String] = {
+    def go(text: List[String], dictionary: List[Definition], context: List[Context]): List[String] = {
+      if (text.isEmpty)
+        List.empty
+      else {
+        val wordsFound = text.head.split(" ")
+          .map(w => dictionary.find(d => d.word.toLowerCase() == w.toLowerCase()))
+          .toList
+        println(wordsFound)
+        go(text.tail, dictionary, context)
+      }
+    }
+
+    go(text, dictionary, context)
+  }
+
+
 }
