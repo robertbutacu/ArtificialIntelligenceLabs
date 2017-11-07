@@ -86,11 +86,29 @@ object Parser {
         List.empty
       else {
         val wordsFound = text.head.split(" ")
-          .map(w => dictionary.find(d => d.word.toLowerCase() == w.toLowerCase()))
-          .toList
-        println(wordsFound)
+          .map(classifyWord(_, text.head))
+        //each definition, on its second argument, wtv the hell its called, has a map of context name => definition
+        //in order to correctly classify words, look em up in the context, try to match as many words as possible
+        //with what it is in the sentence, and then append the correct definition.
+        //println(wordsFound)
         go(text.tail, dictionary, context)
       }
+    }
+
+    def classifyWord(word: String, sentence: String): Option[String] = {
+      val sentenceWords = sentence.split(" ").toList.filterNot(_ == word).map(_.toLowerCase())
+      val wordDefinition = dictionary.find(_.word == word.toLowerCase())
+
+
+      //for each possible definitions, count how many words that describe that certain context
+      // are found in the sentence
+      // The one with the highest count, is returned.
+      wordDefinition match {
+        case None             => None
+        case Some(definition) =>
+      }
+
+      None
     }
 
     go(text, dictionary, context)
