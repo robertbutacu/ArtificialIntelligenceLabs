@@ -17,9 +17,14 @@ object Parser {
       val outputFile     = Source.fromFile(outputFilename)
 
       val splitContext = contextFile.map(_.split("\\s+=\\s+"))
-      val splitDefinitions = definitionFile.map(_.split("\\s+=\\s+"))
-      val splitText = textFile.map(_.split("\\s+=\\s+"))
+      val splitDefinitions = definitionFile.flatMap(_.split("\\s+=\\s+"))
+      val splitText = textFile.flatMap(_.split("\\s+=\\s+"))
 
+      val split = splitContext.map(_.flatMap(_.split(";\\s+")).toList)
+
+      val context = split.map(e => Context(e.head, e.tail))
+
+      println(context)
     } catch{
       case _: FileNotFoundException => println("Invalid file name!")
       case _: IOException           => println("Oups! Its not you, its us!")
