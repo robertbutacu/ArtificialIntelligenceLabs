@@ -42,8 +42,6 @@ object Parser {
       //mapping definitions to actual objects so it will be easier to work with
       val definitions = definitionsNotNormalized.map(d => Definition(d._1,
         d._2.map(t => (getContext(t), getDefinition(t))).toMap))
-
-      println(definitions)
     } catch {
       case _: FileNotFoundException => println("Invalid file name!")
       case _: IOException => println("Oups! Its not you, its us!")
