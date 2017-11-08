@@ -81,19 +81,34 @@ object Parser {
   private def getDefinition(t: String): String = t.span(_ != ']')._2.dropWhile(c => c == ' ' || c == ']')
 
   private def analyzeText(text: List[String], dictionary: List[Definition], context: List[Context]): List[String] = {
-    def go(text: List[String], dictionary: List[Definition], context: List[Context]): List[String] = {
+    def go(text: List[String], dictionary: List[Definition],
+           context: List[Context],
+           rowIndex: Int): List[String] = {
       if (text.isEmpty)
         List.empty
       else {
         val wordsFound = text.head.split(" ")
           .toList
           .map(w => (w, classifyWord(w, text.head)))
-        println(wordsFound)
+
+        val wordsDefined: StringBuilder = new StringBuilder
+
+        wordsFound.foreach {
+          case (_, None) =>
+          case (word, Some(c)) => dictionary.find(d => d.word == word.toLowerCase()) match {
+            case None             =>
+            case Some(definition) => wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions(c)}""")
+          }
+        }
+
+        println(wordsDefined)
+
+        //println(wordsDefined)
         //each definition, on its second argument, wtv the hell its called, has a map of context name => definition
         //in order to correctly classify words, look em up in the context, try to match as many words as possible
         //with what it is in the sentence, and then append the correct definition.
         //println(wordsFound)
-        go(text.tail, dictionary, context)
+        go(text.tail, dictionary, context, rowIndex + 1)
       }
     }
 
@@ -134,6 +149,6 @@ object Parser {
       }
     }
 
-    go(text, dictionary, context)
+    go(text, dictionary, context, 0)
   }
 }
