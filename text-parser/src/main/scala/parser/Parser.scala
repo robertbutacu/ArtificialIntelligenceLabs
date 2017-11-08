@@ -86,7 +86,9 @@ object Parser {
         List.empty
       else {
         val wordsFound = text.head.split(" ")
-          .map(classifyWord(_, text.head))
+          .toList
+          .map(w => (w, classifyWord(w, text.head)))
+        println(wordsFound)
         //each definition, on its second argument, wtv the hell its called, has a map of context name => definition
         //in order to correctly classify words, look em up in the context, try to match as many words as possible
         //with what it is in the sentence, and then append the correct definition.
@@ -104,14 +106,14 @@ object Parser {
       // are found in the sentence
       // The one with the highest count, is returned.
 
-      val x = wordDefinition.flatMap(definition => definition.definitions
+      val contexts = wordDefinition.flatMap(definition => definition.definitions
         .toList
         .map(d => (d._1, count(d._1, sentenceWords))))
 
-      if(x.nonEmpty)
-        println(x)
-
-      None
+      if (contexts.nonEmpty && contexts.maxBy(_._2)._2 > 0)
+        Some(contexts.maxBy(_._2)._1)
+      else
+        None
     }
 
     //left todo
@@ -134,6 +136,4 @@ object Parser {
 
     go(text, dictionary, context)
   }
-
-
 }
