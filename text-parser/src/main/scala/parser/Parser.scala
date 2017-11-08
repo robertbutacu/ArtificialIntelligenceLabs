@@ -51,7 +51,7 @@ object Parser {
       outputFile.close()
     } catch {
       case _: FileNotFoundException => println("Invalid file name!")
-      case _: IOException => println("Oups! Its not you, its us!")
+      case _: IOException           => println("Oups! Its not you, its us!")
     }
   }
 

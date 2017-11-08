@@ -3,10 +3,10 @@ package parser
 object SentenceAnalyzer {
 
   /** For an input like
-    * [tamplarie] piesa mobiliera pe care se sta
-    * returns tamplarie
+    * [carpentry] piece of furniture for people to sit on
+    * returns carpentry
     *
-    * It does so by splitting the input into a tuple: ("[tamplarie", "] piesa mobiliera pe care se sta").
+    * It does so by splitting the input into a tuple: ("[carpentry", "] piece of furniture for people to sit on").
     *
     * After that, it is wanted to get the context, so only _1 of the tuple, and remove any unnecessary chars.
     * => dropWhile it is empty space or [.
@@ -18,10 +18,10 @@ object SentenceAnalyzer {
   def getContext(t: String): String = t.span(_ != ']')._1.dropWhile(c => c == ' ' || c == '[')
 
   /** For an input like
-    * [tamplarie] piesa mobiliera pe care se sta
-    * returns piesa mobiliera pe care se sta
+    * [carpentry] piece of furniture for people to sit on
+    * returns piece of furniture for people to sit on
     *
-    * It does so by splitting the input into a tuple: ("[tamplarie", "] piesa mobiliera pe care se sta").
+    * It does so by splitting the input into a tuple: ("[carpentry", "] piece of furniture for people to sit on").
     *
     * After that , it is wanted to get the definition, so only _2 of the tuple, and remove any unnecessary chars.
     * => dropWhile it is empty or it is "]".
@@ -34,6 +34,7 @@ object SentenceAnalyzer {
 
 
   def analyzeText(text: List[String], dictionary: List[Definition], context: List[Context]): List[String] = {
+
     def go(text: List[String], dictionary: List[Definition],
            context: List[Context],
            rowIndex: Int): List[String] = {
@@ -81,7 +82,7 @@ object SentenceAnalyzer {
       val notEnoughContext = "Not enough context for the word to find a proper definition!"
 
       bestMatch match {
-        case None => None
+        case None    => None
         case Some(d) => if (d._2 > 0) Some(d._1) else Some(notEnoughContext)
       }
     }
@@ -103,12 +104,9 @@ object SentenceAnalyzer {
       def singleLetterPlural(input: String): Boolean =
         !dictionary.exists(e => e.word == word) && dictionary.exists(e => e.word == word.dropRight(1))
 
-      if (singleLetterPlural(word))
-        word.dropRight(1)
-      else if (doubleLetterPlural(word))
-        word.dropRight(2)
-      else
-        word
+      if (singleLetterPlural(word))      word.dropRight(1)//trees    => tree
+      else if (doubleLetterPlural(word)) word.dropRight(2)//branches => branch
+      else                               word
     }
 
     go(text, dictionary, context, 0)
