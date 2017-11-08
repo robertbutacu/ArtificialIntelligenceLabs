@@ -39,7 +39,6 @@ object Parser {
       //a list of tuples represented by (tag, list(definitions))
       val definitionsNotNormalized = split.map(_.head).zip(split.map(e => e.tail.flatMap(b => b.split(";\\s+"))))
 
-
       //mapping definitions to actual objects so it will be easier to work with
       val definitions = definitionsNotNormalized.map(d => Definition(d._1,
         d._2.map(t => (getContext(t), getDefinition(t))).toMap))
@@ -47,8 +46,6 @@ object Parser {
       val outputText = analyzeText(textFile, definitions, context)
 
       outputText.foreach(line => outputFile.write(line))
-
-      //outputFile.write(2)
 
       outputFile.close()
     } catch {
@@ -87,6 +84,7 @@ object Parser {
     */
   private def getDefinition(t: String): String = t.span(_ != ']')._2.dropWhile(c => c == ' ' || c == ']')
 
+
   private def analyzeText(text: List[String], dictionary: List[Definition], context: List[Context]): List[String] = {
     def go(text: List[String], dictionary: List[Definition],
            context: List[Context],
@@ -117,7 +115,7 @@ object Parser {
       val sentenceWords = sentence.split(" ").toList.filterNot(_ == word).map(_.toLowerCase())
       val wordDefinition = dictionary.filter(_.word == word.toLowerCase())
 
-      //for each possible definitions, count how many words that describe that certain context
+      // for each possible definitions, count how many words that describe that certain context
       // are found in the sentence
       // The one with the highest count, is returned.
 
@@ -133,14 +131,6 @@ object Parser {
       else
         None
     }
-
-    //left todo
-    /*
-      1. sparse, break, cut and remove all words to singular form ( so they can be classified correctly )
-      2. go through x and find the max occurence of a context > 0 and return the definition of the context
-      3. return string, if exists , as:
-        Word (line, indexOfWord) - definition.
-     */
 
     def count(propriety: String, sentence: List[String]): Int = {
       context.find(c => c.propriety == propriety) match {
