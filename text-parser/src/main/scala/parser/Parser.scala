@@ -1,6 +1,6 @@
 package parser
 
-import java.io.{FileNotFoundException, IOException}
+import java.io.{File, FileNotFoundException, IOException, PrintWriter}
 
 import scala.io.Source
 
@@ -14,7 +14,8 @@ object Parser {
       val contextFile = Source.fromFile(contextFilename).getLines().toList
       val definitionFile = Source.fromFile(definitionFilename).getLines().toList
       val textFile = Source.fromFile(textFilename).getLines().toList
-      val outputFile = Source.fromFile(outputFilename)
+      //Scala standard library doesn’t contain any classes to write files
+      val outputFile = new PrintWriter(new File(outputFilename))
 
       //splitting every single line into a list of strings ( actually, it will only be a tuple), where the head
       // is the word/context and the rest, a list of definitions/contexts.
@@ -43,7 +44,13 @@ object Parser {
       val definitions = definitionsNotNormalized.map(d => Definition(d._1,
         d._2.map(t => (getContext(t), getDefinition(t))).toMap))
 
-      println(analyzeText(textFile, definitions, context))
+      val outputText = analyzeText(textFile, definitions, context)
+
+      outputText.foreach(line => outputFile.write(line))
+
+      //outputFile.write(2)
+
+      outputFile.close()
     } catch {
       case _: FileNotFoundException => println("Invalid file name!")
       case _: IOException => println("Oups! Its not you, its us!")
@@ -102,14 +109,7 @@ object Parser {
           }
         }
 
-        println(wordsDefined)
-
-        //println(wordsDefined)
-        //each definition, on its second argument, wtv the hell its called, has a map of context name => definition
-        //in order to correctly classify words, look em up in the context, try to match as many words as possible
-        //with what it is in the sentence, and then append the correct definition.
-        //println(wordsFound)
-        go(text.tail, dictionary, context, rowIndex + 1)
+        List(wordsDefined.toString()) ::: go(text.tail, dictionary, context, rowIndex + 1)
       }
     }
 
@@ -117,7 +117,6 @@ object Parser {
       val sentenceWords = sentence.split(" ").toList.filterNot(_ == word).map(_.toLowerCase())
       val wordDefinition = dictionary.filter(_.word == word.toLowerCase())
 
-      //println(sentenceWords)
       //for each possible definitions, count how many words that describe that certain context
       // are found in the sentence
       // The one with the highest count, is returned.
