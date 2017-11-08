@@ -53,7 +53,7 @@ object SentenceAnalyzer {
             dictionary.find(d => d.word == simplify(word.toLowerCase())) match {
               case None             =>
               case Some(definition) =>
-                wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions.getOrElse(c, c)} \n""")
+                wordsDefined.append(s"""Line ($rowIndex, ${text.head.indexOf(word)}), $word = ${definition.definitions.getOrElse(c, c)} \n""")
             }
         }
 
