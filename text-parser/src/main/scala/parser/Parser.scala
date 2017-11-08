@@ -99,12 +99,13 @@ object Parser {
         val wordsDefined: StringBuilder = new StringBuilder
 
         wordsFound.foreach {
-          case (_, None) =>
-          case (word, Some(c)) => dictionary.find(d => d.word == simplify(word.toLowerCase())) match {
-            case None =>
-            case Some(definition) =>
-              wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions.getOrElse(c, c)} \n""")
-          }
+          case (_, None)          =>
+          case (word, Some(c))    =>
+            dictionary.find(d => d.word == simplify(word.toLowerCase())) match {
+              case None             =>
+              case Some(definition) =>
+                wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions.getOrElse(c, c)} \n""")
+            }
         }
 
         List(wordsDefined.toString()) ::: go(text.tail, dictionary, context, rowIndex + 1)
@@ -139,7 +140,7 @@ object Parser {
 
     def count(propriety: String, sentence: List[String]): Int = {
       context.find(c => c.propriety == propriety) match {
-        case None => 0
+        case None      => 0
         case Some(con) => con.contextOf.foldLeft(0)((total, curr) =>
           if (sentence.contains(curr)) total + 1
           else total
