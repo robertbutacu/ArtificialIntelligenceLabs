@@ -100,7 +100,7 @@ object Parser {
 
         wordsFound.foreach {
           case (_, None) =>
-          case (word, Some(c)) => dictionary.find(d => d.word == word.toLowerCase()) match {
+          case (word, Some(c)) => dictionary.find(d => d.word == simplify(word.toLowerCase())) match {
             case None =>
             case Some(definition) =>
               wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions.getOrElse(c, c)} \n""")
@@ -112,8 +112,12 @@ object Parser {
     }
 
     def classifyWord(word: String, sentence: String): Option[String] = {
-      val sentenceWords = sentence.split(" ").toList.filterNot(_ == word).map(_.toLowerCase())
-      val wordDefinition = dictionary.filter(_.word == word.toLowerCase())
+      val sentenceWords = sentence.split(" ")
+        .toList
+        .filterNot(_ == word)
+        .map(w => simplify(w.toLowerCase()))
+
+      val wordDefinition = dictionary.filter(_.word == simplify(word.toLowerCase()))
 
       // for each possible definitions, count how many words that describe that certain context
       // are found in the sentence
@@ -123,13 +127,14 @@ object Parser {
         .toList
         .map(d => (d._1, count(d._1, sentenceWords))))
 
-      if (contexts.nonEmpty)
-        if (contexts.maxBy(_._2)._2 > 0)
-          Some(contexts.maxBy(_._2)._1)
-        else
-          Some("Not enough context for the word to find a proper definition!")
-      else
-        None
+      val bestMatch = if (contexts.nonEmpty) Some(contexts.maxBy(_._2)) else None
+
+      val notEnoughContext = "Not enough context for the word to find a proper definition!"
+
+      bestMatch match {
+        case None => None
+        case Some(d) => if (d._2 > 0) Some(d._1) else Some(notEnoughContext)
+      }
     }
 
     def count(propriety: String, sentence: List[String]): Int = {
@@ -140,6 +145,21 @@ object Parser {
           else total
         )
       }
+    }
+
+    def simplify(word: String): String = {
+      def doubleLetterPlural(input: String): Boolean =
+        !dictionary.exists(e => e.word == word) && dictionary.exists(e => e.word == word.dropRight(2))
+
+      def singleLetterPlural(input: String): Boolean =
+        !dictionary.exists(e => e.word == word) && dictionary.exists(e => e.word == word.dropRight(1))
+
+      if (singleLetterPlural(word))
+        word.dropRight(1)
+      else if (doubleLetterPlural(word))
+        word.dropRight(2)
+      else
+        word
     }
 
     go(text, dictionary, context, 0)
