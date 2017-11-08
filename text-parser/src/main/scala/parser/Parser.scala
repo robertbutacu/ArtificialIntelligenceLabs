@@ -96,8 +96,9 @@ object Parser {
         wordsFound.foreach {
           case (_, None) =>
           case (word, Some(c)) => dictionary.find(d => d.word == word.toLowerCase()) match {
-            case None             =>
-            case Some(definition) => wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions(c)}""")
+            case None =>
+            case Some(definition) =>
+              wordsDefined.append(s"""Line $rowIndex, $word = ${definition.definitions.getOrElse(c, c)} \n""")
           }
         }
 
@@ -125,8 +126,11 @@ object Parser {
         .toList
         .map(d => (d._1, count(d._1, sentenceWords))))
 
-      if (contexts.nonEmpty && contexts.maxBy(_._2)._2 > 0)
-        Some(contexts.maxBy(_._2)._1)
+      if (contexts.nonEmpty)
+        if (contexts.maxBy(_._2)._2 > 0)
+          Some(contexts.maxBy(_._2)._1)
+        else
+          Some("Not enough context for the word to find a proper definition!")
       else
         None
     }
