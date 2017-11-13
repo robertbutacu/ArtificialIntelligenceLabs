@@ -1,8 +1,6 @@
-470898	Vulkanicheskiy Khrebet	Vulkanicheskiy Khrebet	Vulkanicheskiy Khrebet,Vulkanicheskiye Karpaty	48.5	23	T	MTS	RO	UA	00				0		559	Europe/Bucharest	2014-04-06
-486885	Suceava	Suceava	Suceava,Suchava,Suczawa	47.53333	26.53333	H	STM	RO	RO	00				0		232	Europe/Bucharest	2012-01-17
-506555	Pop Ivan	Pop Ivan	Gora Pip-Ivan,Gora Pop-Ivan,Hora Pip-Ivan,Pop Ion,Pop Ivan,Гора Піп-Іван	47.92556	24.32528	T	MT	RO	RO	25	107270			0		1906	Europe/Bucharest	2016-02-07
-545149	Gora Kopilash	Gora Kopilash	Copilas,Copilasul,Copilaş,Copilaşul,Gora Kopilash	47.93333	24.6	T	MT	RO		25	108473			0		1413	Europe/Bucharest	2016-02-07
-548704	Braţul Chilia	Bratul Chilia	Bratu Chilia,Bratul Chilia,Braţu Chilia,Braţul Chilia,Chilia,Kilia Branch,Kiliys'ke Hyrlo,Kiliyskiy Dunay,Kiliyskiy Rukav,Kiliyskoye Girlo,Kiliyskoye Girlo Dunaya,Kiliys’ke Hyrlo,Rukav Kilia,Rukav Kiliya	45.3	29.66667	H	STM	RO		00				0		-1	Europe/Bucharest	2014-07-08
+506555  Pop Ivan	Pop Ivan	Gora Pip-Ivan,Gora Pop-Ivan,Hora Pip-Ivan,Pop Ion,Pop Ivan,Гора Піп-Іван	47.92556	24.32528	T	MT	RO	RO	25	107270			0		1906	Europe/Bucharest	2016-02-07
+545149  Gora Kopilash	Gora Kopilash	Copilas,Copilasul,Copilaş,Copilaşul,Gora Kopilash	47.93333	24.6	T	MT	RO		25	108473			0		1413	Europe/Bucharest	2016-02-07
+548704  Braţul Chilia	Bratul Chilia	Bratu Chilia,Bratul Chilia,Braţu Chilia,Braţul Chilia,Chilia,Kilia Branch,Kiliys'ke Hyrlo,Kiliyskiy Dunay,Kiliyskiy Rukav,Kiliyskoye Girlo,Kiliyskoye Girlo Dunaya,Kiliys’ke Hyrlo,Rukav Kilia,Rukav Kiliya	45.3	29.66667	H	STM	RO		00				0		-1	Europe/Bucharest	2014-07-08
 557735	Gutsul'skiye Al'py	Gutsul'skiye Al'py	Gutsul'skiye Al'py,Gutsuly	47.91667	24.33333	T	MTS	RO	RO	00				0		1812	Europe/Bucharest	2009-03-07
 557745	Gutinskiy Khrebet	Gutinskiy Khrebet	Gutinskiy Khrebet,Gutinskiye Gory	48.08333	23.28333	T	MTS	RO	UA	00				0		645	Europe/Bucharest	2014-04-06
 568133	Chimirnariuluy	Chimirnariuluy	Chimirnariului,Chimirnariuluy,Ciumanaru,Ciumănăru,Paraul Ciumarnarului,Pârăul Ciumarnarului	47.91667	25.46667	H	STM	RO		00				0		565	Europe/Bucharest	2012-01-17
@@ -26451,4 +26449,3 @@
 11669893	Ibis Styles Hotel	Ibis Styles Hotel		44.48403	26.09711	S	HTL	RO		10	179132	11055041		0		73	Europe/Bucharest	2017-08-28
 11670335	Cabana Piatra Singuratica	Cabana Piatra Singuratica		46.68386	25.82478	S	BLDG	RO		20	85760			1	1500	1512	Europe/Bucharest	2017-09-04
 11749002	"Generatii" Community Center	"Generatii" Community Center	Centrul comunitar „Generatii”,Centrul comunitar „Generații”	44.44046	26.05579	S	CTRCM	RO		10	179132	11055039		0		68	Europe/Bucharest	2017-10-31
-11776167	Teste	Teste		47.69526	22.70898	P	PPL	RO		32	138208			0	450	115	Europe/Bucharest	2017-11-11
